@@ -1,7 +1,7 @@
 # Apply Progress — cv-tui-redesign (PR 1: Phases 0 and 1 · PR 2: Phase 2 discovery)
 
 Chain: 6 PRs, stacked-to-main. PR 1 of 6 → git baseline + scaffold/config. PR 2 of 6 → Phase 2 discovery (tasks 2.1–2.3).
-Status: **16/44 tasks complete** (0.1–0.3, 1.0–1.9, 2.1–2.3).
+Status (this section): **16/44 tasks complete** (0.1–0.3, 1.0–1.9, 2.1–2.3) — see "Estado actual" at the end for the cumulative count.
 
 ## Batch state (PR 1)
 
@@ -104,5 +104,43 @@ Status: **16/44 tasks complete** (0.1–0.3, 1.0–1.9, 2.1–2.3).
 ## PR 3 deviations and issues
 - None — implementation matches design §4.4–4.5 and spec cv-rendering exactly. The forbidden-pattern test initially flagged a docstring mentioning `shell=True` (comment-only); corrected to a neutral phrase.
 
-## Status update
+---
+
+## Batch state (PR 4 — CLI, tasks 3.1–3.5)
+
+- Branch: `feature/cv-tui-redesign-pr4` (stacked from `feature/cv-tui-redesign-pr3`, per chained strategy).
+- Commits (work-unit):
+  - `chore(lint): restore format-clean state (PR 3 drift)` — removed an unused `import subprocess` in `tests/test_rendercv.py` and ran `ruff format .` over `src/cvapp/core/rendercv.py` + `tests/test_rendercv.py` (format-only, zero behavior change). PR 3's apply-progress claimed format-clean, but the committed tree was not: ruff flagged F401 plus multiple >100-col lines. Deliberate, minimal exception to the fileset-exclusivity rule — without it `make check` is red at every PR 4+ tip, breaking stacked-to-main's "green after every merge".
+  - `feat(cli): add Typer CLI with tui/list/render/version commands` — `src/cvapp/cli.py`, `src/cvapp/__main__.py`, `tests/test_cli.py` (tasks 3.1–3.3)
+  - `docs(sdd): mark PR 4 tasks complete and persist apply progress` — `tasks.md` `[x]` for 3.1–3.5, this merged apply-progress (tasks 3.4–3.5 verified)
+- No push, no PR: delivery is the feature branch + work-unit commits.
+- Mode: Standard (no strict TDD; task 3.1 RED-first executed: collection error `ModuleNotFoundError: No module named 'cvapp.cli'` observed before implementation).
+- Previous merges: PR 1 + PR 2 + PR 3 base (`feature/cv-tui-redesign-pr3` tip).
+
+## Work Unit Checklist — PR 4 (CLI)
+
+- Unit I — CLI (tasks 3.1, 3.2, 3.3):
+  - **RED (3.1)**: `pytest tests/test_cli.py` → collection error `ModuleNotFoundError: No module named 'cvapp.cli'` (exit 2) — the task-3.1 RED signal, before any implementation. 13 test cases written first: version, list order + empty + configured dir, render success (open_pdf=False asserted) / unknown / ambiguous / failure, config-error headless, no-args → run_tui, tui subcommand, unknown subcommand exit 2, missing argument exit 2.
+  - **GREEN (3.2–3.3)**: `src/cvapp/cli.py` (Typer app, `invoke_without_command=True` callback `main(ctx)`, commands `tui`/`list`/`render <name>`/`version`, `run_tui()` with lazy `cvapp.tui.app.CVApp` import, error mapping stderr+exit 1, usage errors exit 2 via Click, never exit 10) + `src/cvapp/__main__.py` (`from cvapp.cli import app; app()`). `pytest tests/test_cli.py -v` → **13 passed** (exit 0). Full unit suite `pytest -m "not smoke"` → **40 passed** (27 previous + 13 new, no regressions).
+  - Quality gates: `ruff check .` → "All checks passed!"; `ruff format --check .` → 13 files already formatted; `pyright` → `0 errors, 0 warnings, 0 informations`; `make check` → green.
+- Unit J — runtime equivalence (task 3.4): `.venv/bin/python3 -m cvapp` headless against the real project:
+  - `PYTHONPATH=src .venv/bin/python3 -m cvapp list` → the 11 real stems, one per line, exit 0 (exactly `./cv list` output shape per spec).
+  - `PYTHONPATH=src .venv/bin/python3 -m cvapp version` → `2.0.0`, exit 0.
+  - `PYTHONPATH=src .venv/bin/python3 -m cvapp render No_Existe` → stderr `✗ No se encontró ningún CV llamado 'No_Existe'. (detalles en cvapp.log)`, exit 1, no PDF created.
+  - `PYTHONPATH=src .venv/bin/python3 -m cvapp frobnicate` → usage error `No such command 'frobnicate'.`, exit 2.
+- Unit K — old-script equivalence (orchestrator note 3): compared the new argv against the monolith's shell string (`cv_tui.py` line 31, NOT modified). New argv (real code path): `[.venv/bin/rendercv, render, <abs>/Pablo_Gramajo.yaml, -nomd, -nohtml, -nopng, --pdf-path, <abs>/rendercv_output/Pablo_Gramajo.pdf, -o, <abs>/rendercv_output]`. Old tokens: `[rendercv, render, Pablo_Gramajo.yaml, -nomd, -nohtml, -nopng, --pdf-path, rendercv_output/Pablo_Gramajo.pdf]`. **Same effective flags and same effective paths** (new absolute paths ≡ old root-relative paths with cwd = project root, the old script's assumption); the only additions are `-o <abs output_dir>` (behavior-preserving at today's layout: forces the `.typ` intermediate inside output_dir so scoped cleanup reaches it — design §5.2, verified in PR 3 smoke) and the delivery as an argv LIST instead of a `shell=True` string (the quoting-bug fix). Executable resolves to the same binary: `/Users/pdgramajo/Curriculum_Vitae/.venv/bin/rendercv`. Rollback boundary: `git revert` of the `feat(cli)` commit — the new CLI vanishes, old launchers still run the app exactly as today.
+
+## PR 4 deviations and issues
+
+1. **`[project.scripts] cv = "cvapp.cli:main"` vs design §4.7.** Design 4.7 states `app()` keeps both `__main__` and `[project.scripts]` pointing at the same object, but pyproject.toml (PR 1, committed) declares `cvapp.cli:main` — the Typer callback, whose `ctx: typer.Context` parameter would break a real console-script invocation. Nothing pip-installs (design: declarative entry point only; the launcher and `python -m cvapp` are the real paths, and both now work through `app()`/`main`), so this is a documentation-level inconsistency, not a runtime bug. Fix deferred to avoid touching PR 1's file (fileset exclusivity); recommend aligning pyproject to `cv = "cvapp.cli:app"` in a follow-up. Documented, not silently changed.
+2. **Cross-PR lint/format drift fix (see chore commit above).** PR 3's tree was not format-clean (F401 unused import + 7 lines >100 cols). Fixed in this batch so `make check` is green at the tip; noted here to keep the exclusivity exception explicit and reviewable.
+3. **`run_tui` loads config before the lazy TUI import.** For the `tui` subcommand the callback already loaded settings; `run_tui()` loads again (harmless: cheap, idempotent) and also sets up logging in both paths. Matches design 3.1 ("config load happens FIRST for every path").
+4. The `cvapp.log` file is created at the project root by real headless runs (FileHandler opens at construction). Gitignored since baseline; `git status --porcelain` is clean after the run.
+
+## Estado actual (cumulative across PR 1–4)
+
+- **Tasks complete: 29/44** (0.1–0.3, 1.0–1.9, 2.1–2.3, 2.4–2.11, 3.1–3.5).
+- Remaining: PR 5 = Phase 4 TUI (tasks 4.1–4.5); PR 6 = Phase 5 launchers + legacy removal + README + acceptance (tasks 5.1–5.10).
+
+## PR 3 status update (historical — superseded by "Estado actual" above)
 - **Tasks complete**: 24/44 (0.1–0.3, 1.0–1.9, 2.1–2.3, 2.4–2.11)
