@@ -79,9 +79,9 @@ def run_tui() -> None:
         setup_logging(settings)
         startup = settings
 
-    # Lazy import: cvapp.tui exists from Phase 4 (design 4.6); running this
-    # branch before that is impossible unless run_tui is patched in tests.
-    from cvapp.tui.app import CVApp  # type: ignore[import-not-found]
+    # Lazy import keeps Textual out of the headless startup path and lets the
+    # cli tests patch run_tui without importing the TUI package.
+    from cvapp.tui.app import CVApp
 
     CVApp(startup).run()
 

@@ -3,7 +3,7 @@ name = "cvapp"
 version = "2.0.0"          # kept in sync with src/cvapp/__init__.py (see design 4.7)
 
 [project.scripts]
-cv = "cvapp.cli:main"     # declares the canonical entry point
+cv = "cvapp.cli:app"      # declares the canonical entry point (design 4.7)
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
@@ -16,12 +16,9 @@ line-length = 100
 # Deviation from design 2.2 (documented in apply-progress): include is
 # restricted to Python files because ruff 0.16 also formats Markdown code
 # fences — `ruff format .` would otherwise rewrite openspec/ design docs and
-# README. cv_tui.py is the legacy monolith, tracked in the baseline commit
-# and forbidden to touch until Phase 5; it is not lint-clean (bare `except:`
-# = E722; import order = I001), so excluding it keeps `ruff check .` /
-# `make check` green during the chain; remove with Phase 5.
+# README. The legacy cv_tui.py exclude was removed with Phase 5: the monolith
+# is deleted, so nothing outside src/ needs lint protection anymore.
 include = ["*.py"]
-exclude = ["cv_tui.py"]
 
 [tool.ruff.lint]
 select = ["E4", "E7", "E9", "F", "I", "UP"]
