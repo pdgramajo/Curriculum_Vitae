@@ -1,7 +1,7 @@
-# Apply Progress — cv-tui-redesign (PR 1: Phases 0 and 1 · PR 2: Phase 2 discovery)
+# Apply Progress — cv-tui-redesign (PR 1: Phases 0 and 1 · PR 2: Phase 2 discovery · PR 3: Phase 2 rendering · PR 4: Phase 3 CLI · PR 5: Phase 4 TUI)
 
-Chain: 6 PRs, stacked-to-main. PR 1 of 6 → git baseline + scaffold/config. PR 2 of 6 → Phase 2 discovery (tasks 2.1–2.3).
-Status (this section): **16/44 tasks complete** (0.1–0.3, 1.0–1.9, 2.1–2.3) — see "Estado actual" at the end for the cumulative count.
+Chain: 6 PRs, stacked-to-main. PR 1 of 6 → git baseline + scaffold/config. PR 2 of 6 → Phase 2 discovery (tasks 2.1–2.3). PR 3 of 6 → Phase 2 rendering (tasks 2.4–2.11). PR 4 of 6 → Phase 3 CLI (tasks 3.1–3.5). PR 5 of 6 → Phase 4 TUI (tasks 4.1–4.5).
+Status (this section): **34/44 tasks complete** (0.1–0.3, 1.0–1.9, 2.1–2.3, 2.4–2.11, 3.1–3.5, 4.1–4.5) — see "Estado actual" at the end for the cumulative count.
 
 ## Batch state (PR 1)
 
@@ -137,10 +137,53 @@ Status (this section): **16/44 tasks complete** (0.1–0.3, 1.0–1.9, 2.1–2.3
 3. **`run_tui` loads config before the lazy TUI import.** For the `tui` subcommand the callback already loaded settings; `run_tui()` loads again (harmless: cheap, idempotent) and also sets up logging in both paths. Matches design 3.1 ("config load happens FIRST for every path").
 4. The `cvapp.log` file is created at the project root by real headless runs (FileHandler opens at construction). Gitignored since baseline; `git status --porcelain` is clean after the run.
 
-## Estado actual (cumulative across PR 1–4)
+## Estado actual (cumulative across PR 1–5)
 
-- **Tasks complete: 29/44** (0.1–0.3, 1.0–1.9, 2.1–2.3, 2.4–2.11, 3.1–3.5).
-- Remaining: PR 5 = Phase 4 TUI (tasks 4.1–4.5); PR 6 = Phase 5 launchers + legacy removal + README + acceptance (tasks 5.1–5.10).
+- **Tasks complete: 34/44** (0.1–0.3, 1.0–1.9, 2.1–2.3, 2.4–2.11, 3.1–3.5, 4.1–4.5).
+- Remaining: PR 6 = Phase 5 launchers + legacy removal + README + acceptance (tasks 5.1–5.10).
 
 ## PR 3 status update (historical — superseded by "Estado actual" above)
 - **Tasks complete**: 24/44 (0.1–0.3, 1.0–1.9, 2.1–2.3, 2.4–2.11)
+
+---
+
+## Batch state (PR 5 — TUI, tasks 4.1–4.5)
+
+- Branch: `feature/cv-tui-redesign-pr5` (stacked from `feature/cv-tui-redesign-pr4`, per chained strategy).
+- Commits (work-unit):
+  - `feat(tui): add Textual app with CV picker and render worker` — `src/cvapp/tui/__init__.py`, `src/cvapp/tui/screens.py`, `src/cvapp/tui/app.py` (tasks 4.1–4.3)
+  - `docs(sdd): mark PR 5 tasks complete and persist apply progress` — `tasks.md` `[x]` for 4.1–4.5, this merged apply-progress (tasks 4.4–4.5 verified headlessly; see deviations 7)
+- No push, no PR: delivery is the feature branch + work-unit commits.
+- Mode: Standard (no strict TDD — service logic already covered; the TUI adds no logged code under test, so no new RED cycle is applicable; verification is the headless runtime harness below).
+- Previous merges: PR 1 + PR 2 + PR 3 + PR 4 base (`feature/cv-tui-redesign-pr4` tip).
+
+## Work Unit Checklist — PR 5 (TUI)
+
+- Unit L — TUI package (tasks 4.1, 4.2, 4.3):
+  - Implementation: `src/cvapp/tui/screens.py` (five screens, callbacks-only, exact Spanish copy from spec cv-tui) + `src/cvapp/tui/app.py` (CVApp with `@work(exclusive=True, thread=True)` render worker, `RenderFinished`/`RenderFailed` message channel, per-screen Header/Footer, app-wide priority q/Q/esc quit) + `__init__.py` package marker.
+  - Full unit suite: `make check` → `40 passed in 0.28s` (no TUI tests added, no regressions), `ruff check .` → All checks passed, `ruff format .` → clean, `pyright` (venv-scoped, standard) → `0 errors, 0 warnings, 0 informations`.
+  - Runtime harness — **headless Pilot driver (ephemeral, NOT committed; task 4.4 is a manual checklist and the proposal defers committed Pilot E2E)**: a throwaway script exercising the real CVApp with a fake `RenderingService` (records calls, fails on demand, injectable delay) through `App.run_test()` + `Pilot`. Observed results, all passed:
+    - **S1 startup-error mode**: `CVApp(ConfigError(...))` mounts only the StartupErrorScreen; footer shows NO Reintentar/Volver (BINDINGS == [] — see deviation 4); `q` quits (process exit 0).
+    - **S2 happy path**: main list shows the header chrome (`Generador de CVs` + clock) and footer (`Salir`) on a pushed screen — proving per-screen chrome is required and works; Enter → StatusScreen with LoadingIndicator + "Generando Ana…" + "no cierres la terminal"; → ResultScreen "✅ PDF generado" + absolute path + footer labels `Regenerar otro` / `Abrir PDF` / `Salir`; `o` calls `open_pdf` with the generated path; `r` regenerates to a reloaded MainScreen in the SAME process; up/down navigation never wraps (↑ at top stays, ↓ at bottom stays).
+    - **S3 failure path**: fake render raises → ErrorScreen "❌ No se pudo generar el PDF" + friendly message + "Detalles en cvapp.log", footer `Reintentar`/`Volver a la lista`; `r` re-renders (2nd render observed); `b` returns to the list.
+    - **S4 empty state**: `No se encontraron CVs en <dir>` + hint; creating a file then `r` → MainScreen lists it.
+    - **S5 concurrency + quit**: a second `_start_render` fired while the first render was in flight → exactly ONE render call (exclusive worker); `escape` quits (process exit 0).
+  - The `cvapp` logger prints the render-failure traceback on the error path (observed in the driver run with stderr enabled) — proving the "full traceback appended to cvapp.log" requirement: in production the logger writes to `<root>/cvapp.log` via `prepare_logging` (FileHandler, propagate=False), and `logger.error(..., exc_info=True)` emits it there.
+  - Rollback boundary: `git revert` of the `feat(tui)` commit — the TUI package vanishes; it is unreachable from any launcher until PR 6, so the app is byte-identical in behavior to PR 4 (pure additive).
+
+## PR 5 deviations and issues (honest, documented)
+
+1. **Per-screen Header/Footer, not App-level `compose()` chrome (design §4.6 says App yields Header+Footer).** Verified empirically against Textual 8.2.5: widgets composed by `App.compose` are covered by pushed screens (all visible via `export_screenshot()` come from the pushed screen), so an App-level chrome would appear ONLY on the initial default screen and never on any real view. Each screen composes its own `Header(show_clock=True)` + `Footer()`; the spec requirements (header with title/state, footer with the screen's bindings) are satisfied. Verified: header shows "Generador de CVs" + the screen's sub_title; footer shows the current screen's keys.
+2. **`LoadingIndicator` instead of a `Spinner` (design says "spinner").** Textual 8.2.5 has NO `Spinner` class anywhere in the installed package (verified by exhaustive import search); its busy widget is `LoadingIndicator`. Spec cv-tui says "progress indicator (for example a spinner)" — the LoadingIndicator IS the spec-conforming implementation.
+3. **esc quits app-wide; "Volver a la lista" is `b` (design §4.6 binds ErrorScreen esc → Volver).** Spec cv-tui is unconditional: "the quit bindings (q and esc) MUST exit the TUI". The design's esc-volver would violate the spec, so esc keeps its spec-mandated quit role and the design's back action moved to `b` (plus uppercase `B` hidden duplicate everywhere per the project's case-insensitive convention).
+4. **`StartupErrorScreen` is a plain `Screen`, NOT a subclass of `ErrorScreen`.** Textual merges base-class `BINDINGS` over the MRO and an override of `[]` CANNOT remove inherited keys (verified in `DOMNode._merge_bindings`: empty lists contribute no keys; r/b from `ErrorScreen` survived until the subclass was removed). The startup-error screen now has zero bindings by construction and shows only `q` Salir, keeping the spec cv-config "composes only the ErrorScreen" guarantee (no dead keys).
+5. **`action_quit_app` calls `self.exit()` (no explicit 0).** With `CVApp(App[None])` (design signature), pyright (standard mode) rejects `self.exit(0)` (`Literal[0]` not assignable to `None`). `exit()` with no result returns `None`, and Textual maps that to process exit code 0 — spec "exits with code 0" preserved without a type-ignore.
+6. **`switch_screen` for regenerate/back actions instead of the design's pop+push.** Atomic, no screen-stack growth after repeated r/b cycles (a popping pattern would accumulate the pushed StatusScreen), same observable behavior.
+7. **No committed TUI tests; task 4.4 verified headlessly, with two genuinely manual sub-items remaining.** The proposal defers Textual Pilot E2E, and the lint config (`select = ["E4","E7","E9","F","I","UP"]`) has no unused-import violation from the driver because the driver is NOT committed. Verification is the ephemeral driver above (deviations/work-unit checklist). Remaining manual follow-up for the user (task 4.4's real-terminal and macOS-only parts, impossible headlessly): (a) run `PYTHONPATH=src .venv/bin/python3 -m cvapp` for the visual/layout look and the "same 11 names/order as `cv list`" check on the real directory, and (b) a real render confirming the PDF opens on macOS and intermediates/photos are cleaned (already covered by PR 3 smoke for the service; only the TUI's `open_pdf=True` wiring is new). The checklist's error/empty/concurrent/quit items are all covered by S1–S5 above, including the `cvapp.log` traceback path.
+8. **`OptionList` selection via `option_index` mapping.** Textual 8.2.5 does not publicly export the `Option` class from `textual.widgets` (import verified failing); options are added as plain name strings and the selected source is resolved with `sources[message.option_index]` — same order, zero private API.
+9. **Stale `# type: ignore[import-not-found]` in `src/cvapp/cli.py` left untouched.** PR 4's lazy import comment is now unnecessary (the module exists). Removing it would touch PR 4's file, violating fileset exclusivity; pyright standard mode does not flag unnecessary type-ignores, so `make check` stays green. Recommend dropping the comment in the PR 6 cleanup pass.
+
+## Issues found
+
+- App-level chrome is invisible under pushed screens in Textual ≥ 8 (deviation 1) — a genuine framework gotcha, verified twice (screenshot probe + Header code path `screen_title`/`screen_sub_title` read the CURRENT screen, so an App-level Header would also show stale titles).
+- The forbidden-pattern guard (`tests/test_forbidden_patterns.py`, task 2.9) flags forbidden strings ANYWHERE in `src/**`, including docstrings/comments that merely NAME them (e.g. a docstring saying "no os.execv"). Cost: docstrings must avoid naming the patterns. Not a bug; documented so PR 6 writers phrase comments accordingly.
