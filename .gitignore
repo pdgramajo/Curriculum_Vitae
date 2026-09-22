@@ -4,3 +4,4 @@ rendercv_output/
 __pycache__/
 cvapp.log
 .DS_Store
+.coverage

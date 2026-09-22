@@ -1,15 +1,2 @@
 #!/bin/bash
-
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-cd "$SCRIPT_DIR"
-
-if [ -d ".venv" ]; then
-    source .venv/bin/activate
-elif [ -d "rendercv-env" ]; then
-    source rendercv-env/bin/activate
-else
-    echo "❌ No se encontró entorno virtual"
-    exit 1
-fi
-
-exec python3 cv_tui.py "$@"
+exec "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/cv" "$@"
