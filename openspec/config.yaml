@@ -45,7 +45,7 @@ projects:
 # with what tool, instead of assuming a stack that is not here.
 testing:
   detected: "2026-09-21"
-  test_runner: null               # no pytest/unittest installed in either venv
+  test_runner: pytest             # installed into .venv by task 1.0 (additive dev dep)
   test_layers:
     unit: null
     integration: null
@@ -82,10 +82,10 @@ rules:
       - "Follow existing patterns: script-style code with venv activation; keep TUI copy in Spanish."
       - "Do NOT commit .venv/, rendercv-env/, __pycache__/, or rendercv_output/ generated artifacts."
       - "Never run `open` or `osascript` in automated checks (macOS side effects)."
-    tdd: false                    # mirrors strict_tdd; keep false until a real test command exists
-    test_command: ""              # to fill in once pytest (or equivalent) exists
+    tdd: false                    # mirrors strict_tdd; keep false (standard mode)
+    test_command: ".venv/bin/pytest -m \"not smoke\""   # set by task 1.8 (runner introduced in 1.0)
   verify:
-    test_command: ""              # no test suite yet
+    test_command: ".venv/bin/pytest -m \"not smoke\""
     build_command: ".venv/bin/python3 -m py_compile cv_tui.py"   # smoke check that the TUI module parses
     coverage_threshold: 0         # no coverage tool yet
   archive:
