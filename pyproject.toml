@@ -1,0 +1,39 @@
+[project]
+name = "cvapp"
+version = "2.0.0"          # kept in sync with src/cvapp/__init__.py (see design 4.7)
+
+[project.scripts]
+cv = "cvapp.cli:main"     # declares the canonical entry point
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]      # pytest >= 7: imports cvapp from src/ without PYTHONPATH
+markers = ["smoke: opt-in real RenderCV render (invoke with pytest -m smoke)"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+# Deviation from design 2.2 (documented in apply-progress): include is
+# restricted to Python files because ruff 0.16 also formats Markdown code
+# fences — `ruff format .` would otherwise rewrite openspec/ design docs and
+# README. cv_tui.py is the legacy monolith, tracked in the baseline commit
+# and forbidden to touch until Phase 5; it is not lint-clean (bare `except:`
+# = E722; import order = I001), so excluding it keeps `ruff check .` /
+# `make check` green during the chain; remove with Phase 5.
+include = ["*.py"]
+exclude = ["cv_tui.py"]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I", "UP"]
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.pyright]
+typeCheckingMode = "standard"
+# Deviation from design 9 (documented in apply-progress): the pyright CLI did
+# not auto-detect .venv on this machine, so every third-party import failed
+# with reportMissingImports. Pointing it at the project's venv explicitly
+# resolves pydantic/ruamel/textual/pytest from the real runtime environment.
+venvPath = "."
+venv = ".venv"
