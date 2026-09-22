@@ -1,80 +1,15 @@
 #!/bin/bash
-
+# Thin launcher: resolves the project from ITS OWN location, runs the app in .venv.
+set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-cd "$SCRIPT_DIR"
 
-if [ -d ".venv" ]; then
-    VENV=".venv"
-elif [ -d "rendercv-env" ]; then
-    VENV="rendercv-env"
-else
-    echo "❌ No se encontró entorno virtual (.venv o rendercv-env)"
+if [ ! -x "$SCRIPT_DIR/.venv/bin/python3" ]; then
+    echo "❌ No se encontró el entorno virtual (.venv) en $SCRIPT_DIR" >&2
     exit 1
 fi
 
-source "$VENV/bin/activate"
+export PATH="$SCRIPT_DIR/.venv/bin:$PATH"
+export PYTHONPATH="$SCRIPT_DIR/src${PYTHONPATH:+:$PYTHONPATH}"
+export CVAPP_PROJECT_ROOT="$SCRIPT_DIR"
 
-files=(*.yaml)
-
-if [ ${#files[@]} -eq 0 ] || [ ! -f "${files[0]}" ]; then
-    echo "❌ No se encontraron archivos YAML de CV"
-    deactivate
-    exit 1
-fi
-
-if [ -n "$1" ]; then
-    choice="$1"
-else
-    count=0
-    echo ""
-    echo "📄 Seleccioná el CV a generar:"
-    echo ""
-    for f in "${files[@]}"; do
-        if [ -f "$f" ]; then
-            count=$((count + 1))
-            name=$(basename "$f" .yaml)
-            echo "  $count) $name"
-        fi
-    done
-    echo ""
-    echo "Usage: ./cv [número]"
-    echo "  ej: ./cv 2"
-    deactivate
-    exit 1
-fi
-
-if ! [[ "$choice" =~ ^[0-9]+$ ]]; then
-    echo "❌ Opción inválida: $choice"
-    deactivate
-    exit 1
-fi
-
-count=${#files[@]}
-if [ "$choice" -lt 1 ] || [ "$choice" -gt $count ]; then
-    echo "❌ Opción fuera de rango (1-$count)"
-    deactivate
-    exit 1
-fi
-
-selected="${files[$((choice-1))]}"
-filename=$(basename "$selected")
-basename_no_ext="${filename%.yaml}"
-
-echo ""
-echo "🔄 Generando $filename..."
-rendercv render "$filename" -nomd -nohtml -nopng --pdf-path "rendercv_output/${basename_no_ext}.pdf"
-
-rm -f rendercv_output/*.typ rendercv_output/*.md rendercv_output/*.html rendercv_output/*_*.png 2>/dev/null
-
-deactivate
-
-latest_pdf=$(ls -t rendercv_output/*.pdf 2>/dev/null | head -1)
-
-if [ -n "$latest_pdf" ]; then
-    echo ""
-    echo "✅ Listo! Abriendo PDF..."
-    open "$latest_pdf"
-else
-    echo "❌ No se encontró PDF generado"
-    exit 1
-fi
+exec "$SCRIPT_DIR/.venv/bin/python3" -m cvapp "$@"
