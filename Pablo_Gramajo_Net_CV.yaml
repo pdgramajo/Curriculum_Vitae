@@ -1,0 +1,144 @@
+cv:
+  name: "Pablo Gramajo"
+  headline: "Senior Full-Stack Engineer (.NET / React)"
+  location: "San Salvador de Jujuy, Argentina"
+  email: "pdgramajo@gmail.com"
+  phone: "(+54) 388 437 2397"
+
+  sections:
+    summary:
+      - "Senior Software Engineer with 11 years of experience designing,
+        developing, and modernizing enterprise web applications with a strong
+        background in C#, .NET, and scalable backend systems. Proven experience
+        building REST APIs, implementing business logic, refactoring legacy
+        codebases, and working with SQL Server and relational databases.
+        Strong full-stack capabilities with modern frontend expertise in React,
+        TypeScript, and enterprise UI development. Focused on clean code,
+        performance, testing, maintainability, and cross-functional
+        collaboration in Agile environments."
+
+    experience:
+      - company: "Independent"
+        position: "Full-Stack Engineer"
+        location: "Argentina"
+        start_date: "2025-12"
+        end_date: "present"
+        highlights:
+          - "Building SaaS products, prototypes, and internal tools using React,
+            TypeScript, JavaScript, and modern web technologies."
+          - "Leveraging AI-assisted development workflows to accelerate feature
+            delivery, prototyping, refactoring, and code quality."
+          - "Designing scalable frontend architectures, authentication flows,
+            APIs, and relational database models."
+          - "Managing full product lifecycle including planning, development,
+            deployment, testing, and continuous iteration."
+          - "Working with cloud services and modern tooling such as Supabase,
+            GitHub, CI/CD workflows, and version control best practices."
+
+      - company: "Planhopper"
+        position: "Senior Developer"
+        location: "Spain"
+        start_date: "2024-07"
+        end_date: "2025-08"
+        highlights:
+          - "Developed and maintained enterprise frontend applications using
+            React, JavaScript, and Material UI."
+          - "Integrated frontend modules with REST APIs and backend-provided
+            data models."
+          - "Collaborated with backend teams to align UI behavior with business
+            rules and system constraints."
+          - "Implemented unit tests with Jest to improve reliability and code
+            quality."
+          - "Focused on performance, maintainability, modularity, and scalable
+            application architecture."
+
+      - company: "Endava SRL"
+        position: "Senior Developer"
+        location: "Buenos Aires, Argentina"
+        start_date: "2021-06"
+        end_date: "2024-06"
+        highlights:
+          - "Built and maintained enterprise web applications using React,
+            TypeScript, and JavaScript."
+          - "Integrated REST APIs with robust handling of validations, errors,
+            and edge cases."
+          - "Worked closely with backend teams to understand business logic,
+            service contracts, and system workflows."
+          - "Implemented unit testing and component documentation using
+            Storybook."
+          - "Contributed to performance improvements, maintainability, and
+            production reliability in Agile teams."
+
+      - company: "Integra Media SRL"
+        position: "FullStack Developer"
+        location: "Salta, Argentina"
+        start_date: "2014-10"
+        end_date: "2021-06"
+        highlights:
+          - "Developed backend services using C#, ASP.NET, .NET Framework, and
+            .NET Core, implementing business logic and REST APIs."
+          - "Designed and maintained data access layers using Entity Framework,
+            LINQ, and Dapper."
+          - "Worked extensively with SQL Server, stored procedures,
+            transactions, and query optimization."
+          - "Participated in modernization and refactoring initiatives for
+            maintainability and scalability."
+          - "Built frontend modules using React, Ember.js, Bootstrap, HTML,
+            CSS, and JavaScript."
+          - "Collaborated with multidisciplinary teams delivering scalable
+            enterprise solutions across the full stack."
+
+    education:
+      - institution: "Universidad Nacional de Jujuy (UNJU)"
+        area: "Analista Programador Universitario"
+        location: "Jujuy, Argentina"
+        start_date: "2011-02"
+        end_date: "2014-03"
+        highlights:
+          - "Strong foundation in software engineering, object-oriented
+            programming, databases, and systems design."
+          - "Core concepts in algorithms, data structures, and software
+            architecture."
+
+      - institution: "Universidad Nacional de Jujuy (UNJU)"
+        area: "Diplomatura Universitaria en Análisis de Datos desde Cero – Acelera tu Futuro"
+        location: "Jujuy, Argentina"
+        start_date: "2025-10"
+        end_date: "2026-01"
+        highlights:
+          - "Completed 140 hours focused on data analysis, reporting, and data
+            interpretation."
+          - "Created dashboards and visualizations using Power BI."
+          - "Covered data-driven decision making and analytical foundations."
+
+    skills:
+      - label: "Microsoft Stack & Backend"
+        details: "C#, ASP.NET, ASP.NET MVC, .NET Framework, .NET Core,
+          Web API, RESTful APIs, OOP, SOLID, Clean Architecture"
+
+      - label: "Databases & Persistence"
+        details: "SQL Server, PostgreSQL, MongoDB, Stored Procedures,
+          LINQ, Dapper, Entity Framework, Data Modeling, Query Optimization"
+
+      - label: "Cloud, DevOps & Containers"
+        details: "Azure Functions, CI/CD Pipelines, Docker, Git,
+          Deployment Workflows, Supabase, AWS S3, AWS Cognito"
+
+      - label: "Frontend & UI"
+        details: "React, TypeScript, JavaScript (ES6+), HTML, CSS,
+          Material UI, Bootstrap"
+
+      - label: "Architecture & Integration"
+        details: "Multi-tier Applications, Modular Systems,
+          API Integrations, Distributed Systems Fundamentals"
+
+      - label: "Testing & Delivery"
+        details: "Unit Testing, Integration Testing, Jest,
+          SonarQube, Agile/Scrum, Jira, Confluence"
+
+  social_networks:
+    - network: "GitHub"
+      username: "pdgramajo"
+
+    - network: "LinkedIn"
+      username: "pablo-gramajo"

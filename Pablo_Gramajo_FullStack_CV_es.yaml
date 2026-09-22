@@ -1,0 +1,157 @@
+cv:
+  name: "Pablo Gramajo"
+  headline: "Desarrollador Full-Stack Senior"
+  location: "San Salvador de Jujuy, Argentina"
+  email: "pdgramajo@gmail.com"
+  phone: "(+54) 388 437 2397"
+
+  sections:
+    summary:
+      - "Desarrollador Full-Stack Senior con 11 años de experiencia diseñando,
+        desarrollando y manteniendo aplicaciones web empresariales en entornos
+        frontend y backend. Amplia experiencia en C#, .NET, React,
+        TypeScript, Node.js y arquitecturas web escalables. Experiencia
+        comprobada en la construcción de APIs REST, implementación de lógica
+        de negocio, modernización de sistemas heredados y creación de
+        interfaces de usuario responsivas. Habilidad en bases de datos
+        relacionales, servicios en la nube, arquitectura de software, testing
+        y colaboración ágil. Apasionado por el código limpio, el rendimiento,
+        la escalabilidad y la entrega de soluciones de software de alta
+        calidad."
+
+    experience:
+      - company: "Independiente"
+        position: "Desarrollador Full-Stack Senior"
+        location: "Argentina"
+        start_date: "2025-12"
+        end_date: "present"
+        highlights:
+          - "Construyendo productos SaaS, prototipos y plataformas internas
+            utilizando React, TypeScript, JavaScript, C# y tecnologías .NET."
+          - "Diseñando e implementando arquitecturas frontend escalables,
+            APIs backend, sistemas de autenticación y modelos de bases de
+            datos relacionales."
+          - "Desarrollando aplicaciones full-stack con foco en mantenibilidad,
+            rendimiento, escalabilidad y arquitectura limpia."
+          - "Aprovechando flujos de desarrollo asistidos por IA para acelerar
+            la entrega de funcionalidades, refactorización, depuración y
+            mejoras de calidad de código."
+          - "Gestionando todo el ciclo de vida del software, incluyendo
+            planificación, desarrollo, despliegue, testing e iteración
+            continua."
+          - "Trabajando con herramientas modernas de cloud y DevOps, incluyendo
+            Supabase, GitHub, flujos de CI/CD, Docker y buenas prácticas de
+            control de versiones."
+
+      - company: "Planhopper"
+        position: "Desarrollador Full-Stack Senior"
+        location: "España"
+        start_date: "2024-07"
+        end_date: "2025-08"
+        highlights:
+          - "Desarrollé y mantuve aplicaciones empresariales utilizando React,
+            JavaScript, Material UI e integraciones con APIs REST."
+          - "Colaboré estrechamente con equipos backend para alinear el
+            comportamiento frontend con la lógica de negocio y los flujos del
+            sistema."
+          - "Implementé componentes UI escalables y reutilizables, enfocados en
+            la mantenibilidad y el rendimiento."
+          - "Contribuí a discusiones de arquitectura de aplicaciones,
+            implementación de funcionalidades y confiabilidad en producción."
+          - "Implementé testing unitario con Jest para mejorar la calidad del
+            software y reducir regresiones."
+
+      - company: "Endava SRL"
+        position: "Desarrollador Full-Stack Senior"
+        location: "Buenos Aires, Argentina"
+        start_date: "2021-06"
+        end_date: "2024-06"
+        highlights:
+          - "Construí y mantuve aplicaciones web empresariales usando React,
+            TypeScript, JavaScript e integraciones con servicios backend."
+          - "Integré APIs REST con manejo sólido de validaciones, errores y
+            flujos complejos de negocio."
+          - "Trabajé en colaboración con ingenieros backend y equipos
+            multifuncionales en entornos Agile."
+          - "Implementé testing unitario y documentación de componentes con
+            Jest y Storybook."
+          - "Contribuí a la arquitectura frontend, mantenibilidad,
+            optimizaciones de rendimiento y estabilidad en producción."
+
+      - company: "Integra Media SRL"
+        position: "Desarrollador Full-Stack"
+        location: "Salta, Argentina"
+        start_date: "2014-10"
+        end_date: "2021-06"
+        highlights:
+          - "Desarrollé sistemas backend utilizando C#, ASP.NET, .NET
+            Framework, .NET Core y APIs RESTful."
+          - "Implementé lógica de negocio, capas de acceso a datos y
+            arquitecturas backend escalables utilizando Entity Framework,
+            LINQ y Dapper."
+          - "Trabajé extensamente con SQL Server, stored procedures,
+            transacciones, optimización de consultas y diseño de bases de
+            datos relacionales."
+          - "Participé en iniciativas de modernización y refactorización
+            enfocadas en mantenibilidad y escalabilidad."
+          - "Construí aplicaciones frontend y módulos UI reutilizables usando
+            React, Ember.js, Bootstrap, HTML, CSS y JavaScript."
+          - "Colaboré con equipos multidisciplinarios para entregar soluciones
+            de software empresariales en todo el stack."
+
+    education:
+      - institution: "Universidad Nacional de Jujuy (UNJU)"
+        area: "Analista Programador Universitario"
+        location: "Jujuy, Argentina"
+        start_date: "2011-02"
+        end_date: "2014-03"
+        highlights:
+          - "Base sólida en ingeniería de software, programación orientada a
+            objetos, bases de datos, algoritmos y diseño de sistemas."
+          - "Conceptos clave en estructuras de datos, arquitectura de software
+            y desarrollo de aplicaciones."
+
+      - institution: "Universidad Nacional de Jujuy (UNJU)"
+        area: "Diplomatura Universitaria en Análisis de Datos desde Cero – Acelera tu Futuro"
+        location: "Jujuy, Argentina"
+        start_date: "2025-10"
+        end_date: "2026-01"
+        highlights:
+          - "Completé 140 horas enfocadas en análisis de datos, reporting e
+            interpretación de datos."
+          - "Creé dashboards y visualizaciones utilizando Power BI."
+          - "Abordé la toma de decisiones basada en datos y fundamentos
+            analíticos."
+
+    skills:
+      - label: "Backend y stack de Microsoft"
+        details: "C#, ASP.NET, ASP.NET MVC, .NET Framework, .NET Core,
+          Web API, APIs REST, Node.js, Express, OOP, SOLID, Clean Architecture"
+
+      - label: "Desarrollo Frontend y UI"
+        details: "React, TypeScript, JavaScript (ES6+), HTML, CSS,
+          Material UI, Bootstrap, Diseño responsive"
+
+      - label: "Bases de datos y persistencia"
+        details: "SQL Server, PostgreSQL, MongoDB, Stored Procedures,
+          LINQ, Dapper, Entity Framework, Modelado de datos, Optimización de consultas"
+
+      - label: "Cloud, DevOps e infraestructura"
+        details: "Azure Functions, Docker, Pipelines CI/CD, Git,
+          Flujos de despliegue, Supabase, AWS S3, AWS Cognito"
+
+      - label: "Arquitectura e integración"
+        details: "Arquitectura Full-Stack, Sistemas modulares,
+          Integraciones de APIs, Aplicaciones multi-capa,
+          Fundamentos de sistemas distribuidos"
+
+      - label: "Testing y entrega ágil"
+        details: "Testing unitario, Testing de integración, Jest,
+          SonarQube, Agile/Scrum, Jira, Confluence"
+
+  social_networks:
+    - network: "GitHub"
+      username: "pdgramajo"
+
+    - network: "LinkedIn"
+      username: "pablo-gramajo"

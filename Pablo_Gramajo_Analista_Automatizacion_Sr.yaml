@@ -1,0 +1,122 @@
+cv:
+  name: "Pablo Gramajo"
+  headline: "Senior Full-Stack Engineer | Automation & Data Solutions"
+  location: "San Salvador de Jujuy, Argentina"
+  email: "pdgramajo@gmail.com"
+  phone: "(+54) 388 437 2397"
+
+  sections:
+    summary:
+      - "Ingeniero de Software con más de 11 años de experiencia desarrollando
+        aplicaciones web y herramientas internas, con fuerte enfoque en
+        automatización de procesos, integración de datos y mejora de
+        operaciones mediante tecnología. Experiencia en desarrollo backend con
+        .NET, frontend con React, y construcción de soluciones orientadas a
+        optimizar flujos de trabajo y toma de decisiones basada en datos.
+        Perfil analítico, proactivo y orientado a resultados."
+
+    experience:
+      - company: "Independent"
+        position: "Full-Stack Engineer"
+        location: "Argentina"
+        start_date: "2025-12"
+        end_date: "present"
+        highlights:
+          - "Desarrollo de herramientas internas y soluciones SaaS orientadas a
+            automatizar procesos operativos."
+          - "Diseño e integración de APIs y flujos de datos entre múltiples
+            sistemas."
+          - "Automatización de tareas repetitivas para mejorar eficiencia y
+            reducir errores manuales."
+          - "Construcción de dashboards y funcionalidades orientadas a análisis
+            de datos."
+          - "Uso de herramientas modernas y AI-assisted development para
+            acelerar entregas y mejorar calidad de código."
+
+      - company: "Planhopper"
+        position: "Senior Developer"
+        location: "España"
+        start_date: "2024-07"
+        end_date: "2025-08"
+        highlights:
+          - "Desarrollo de aplicaciones frontend y herramientas internas con
+            React."
+          - "Integración de múltiples APIs para unificar datos de negocio."
+          - "Colaboración en funcionalidades de visualización de datos y
+            reporting."
+          - "Trabajo conjunto con backend para alinear lógica de negocio y
+            procesamiento de datos."
+
+      - company: "Endava SRL"
+        position: "Senior Developer"
+        location: "Buenos Aires, Argentina"
+        start_date: "2021-06"
+        end_date: "2024-06"
+        highlights:
+          - "Desarrollo de aplicaciones empresariales con integración de reglas
+            de negocio y flujos de datos complejos."
+          - "Integración de APIs con validaciones, manejo de errores y edge
+            cases."
+          - "Mejoras de performance y mantenibilidad mediante optimización de
+            lógica y manejo de datos."
+          - "Trabajo en equipos ágiles colaborando con distintas áreas."
+
+      - company: "Integra Media SRL"
+        position: "FullStack Developer"
+        location: "Salta, Argentina"
+        start_date: "2014-10"
+        end_date: "2021-06"
+        highlights:
+          - "Desarrollo backend con .NET enfocado en lógica de negocio y
+            procesamiento de datos."
+          - "Diseño y optimización de consultas SQL, stored procedures y
+            transacciones."
+          - "Integración de sistemas y fuentes de datos para soportar
+            operaciones."
+          - "Construcción de herramientas frontend para visualización y gestión
+            de datos."
+
+    education:
+      - institution: "Universidad Nacional de Jujuy (UNJU)"
+        area: "Analista Programador Universitario"
+        location: "Jujuy, Argentina"
+        start_date: "2011-02"
+        end_date: "2014-03"
+      - institution: "Universidad Nacional de Jujuy (UNJU)"
+        area: "Diplomatura en Análisis de Datos"
+        location: "Jujuy, Argentina"
+        start_date: "2025-10"
+        end_date: "2026-01"
+        highlights:
+          - "Formación en análisis de datos, SQL y visualización."
+          - "Creación de dashboards y reportes con Power BI."
+          - "Aplicación de datos para la toma de decisiones."
+
+    skills:
+      - label: "Automatización y Procesos"
+        details: "Automatización de tareas, Optimización de procesos,
+          Integración de sistemas, Mejora de flujos operativos"
+      - label: "Backend e Integración"
+        details: "C#, .NET Core, ASP.NET Web API, REST APIs,
+          Implementación de lógica de negocio"
+      - label: "Bases de Datos"
+        details: "SQL Server, PostgreSQL, MongoDB,
+          Modelado de datos, Optimización de consultas"
+      - label: "Frontend y Herramientas"
+        details: "React, JavaScript, TypeScript,
+          Desarrollo de herramientas internas"
+      - label: "Datos y Reporting"
+        details: "Power BI, Visualización de datos,
+          Creación de dashboards, Análisis de datos"
+      - label: "Cloud y DevOps"
+        details: "Docker, CI/CD, Git, Supabase"
+      - label: "Competencias"
+        details: "Pensamiento analítico, Resolución de problemas,
+          Proactividad, Autonomía, Aprendizaje continuo"
+  
+  social_networks:
+    - network: "GitHub"
+      username: "pdgramajo"
+
+    - network: "LinkedIn"
+      username: "pablo-gramajo"

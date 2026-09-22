@@ -1,0 +1,130 @@
+cv:
+  name: "Pablo Gramajo"
+  headline: "Senior Frontend Engineer (React)"
+  location: "San Salvador de Jujuy, Argentina"
+  email: "pdgramajo@gmail.com"
+  phone: "(+54) 388 437 2397"
+
+  sections:
+    summary:
+      - "Senior Software Engineer with 11 years of experience in software development, with a strong focus on frontend development using React and JavaScript (ES6+). Experienced in building scalable and reusable user interfaces, component-based architectures, state management, REST API integrations, and automated testing. Strong background working on enterprise applications and collaborating with cross-functional teams to deliver maintainable, high-quality web applications."
+
+  experience:
+    - company: "Independent Software Developer"
+      position: "Senior Developer"
+      location: "Jujuy, Argentina"
+      start_date: "2025-11"
+      end_date: present
+      highlights:
+        - "Designed and developed a web-based cash management application for a local business using React, TypeScript, Redux Toolkit, Tailwind CSS, shadcn/ui, React Hook Form, and Lucide Icons, following a mobile-first approach."
+        - "Built reusable frontend architecture using Clean Architecture concepts, SOLID principles, component-based design, and Redux Toolkit."
+        - "Implemented persistent local data storage using IndexedDB and Dexie, including relationships, indexes, transactions, queries, and database versioning/migrations."
+        - "Designed the application as a Progressive Web App (PWA) with an offline-first architecture prepared for future backend synchronization."
+        - "Implemented unit and component testing using Vitest and React Testing Library, including test coverage and automated validation."
+        - "Designed GitHub Actions CI/CD workflows with separate and parallel jobs for linting, formatting, TypeScript type checking, testing, coverage, builds, and deployment, preventing deployment when validation steps fail."
+        - "Applied Spec-Driven Development and used OpenCode with AI models for implementation, debugging, refactoring, testing, documentation, and problem solving."
+        - "Containerized the development environment using Docker, Docker Compose, and multi-stage Docker builds, and deployed the application to GitHub Pages using automated CI/CD."
+
+    - company: "Planhopper"
+      position: "Senior Frontend Developer"
+      location: "Spain"
+      start_date: "2024-07"
+      end_date: "2025-08"
+      highlights:
+        - "Developed and maintained frontend applications using React, JavaScript (ES6+), HTML5, CSS3, and Material UI."
+        - "Built reusable and scalable UI components using React Hooks, custom hooks, React Router, and component-based architecture."
+        - "Implemented application state management using Redux and Context API, and developed responsive user interfaces."
+        - "Built and maintained forms using Formik and Yup, including form validation and user input handling."
+        - "Integrated frontend applications with REST APIs using Axios and Fetch."
+        - "Wrote and maintained unit tests using Jest, and configured frontend tooling using Webpack and Babel."
+        - "Used npm, pnpm, and Yarn for package management, and maintained code quality using ESLint and Prettier."
+        - "Worked with Git and GitHub, pull requests, code reviews, collaborative branching, and GitHub Actions CI/CD pipelines for formatting, linting, testing, builds, and deployments."
+        - "Leveraged ChatGPT and GitHub Copilot for development, debugging, refactoring, and code improvement, with a focus on performance and maintainability."
+
+    - company: "Endava SRL"
+      position: "Senior Frontend Developer"
+      location: "Buenos Aires, Argentina"
+      start_date: "2021-06"
+      end_date: "2024-06"
+      highlights:
+        - "Built and maintained enterprise-level frontend applications using React, TypeScript, JavaScript (ES6+), HTML5, CSS3, and Material UI."
+        - "Built reusable and scalable UI components using React Hooks, custom hooks, React Router, and component-based architecture."
+        - "Implemented strongly typed applications using TypeScript interfaces, types, generics, typed props, state, and API responses."
+        - "Implemented application state management using Redux, Redux Toolkit, and Context API depending on project requirements."
+        - "Developed responsive interfaces using Material UI, Tailwind, CSS, SCSS/Sass, CSS Modules, and styled-components."
+        - "Built forms and client-side validation using Formik, React Hook Form, and validation libraries depending on project requirements."
+        - "Integrated frontend applications with REST APIs using Axios, including request handling, loading states, and error handling."
+        - "Wrote automated tests using Jest, React Testing Library, and Enzyme, and created Storybook stories for reusable UI components."
+        - "Worked with Webpack, Babel, Vite, npm, Yarn, and pnpm for frontend development, builds, and dependency management."
+        - "Maintained code quality using ESLint, Prettier, and SonarQube, and worked with Git, GitHub, GitFlow, pull requests, code reviews, and CI/CD pipelines."
+        - "Implemented accessibility practices including ARIA attributes and keyboard navigation, as well as data visualizations using Chart.js and other charting libraries."
+        - "Worked on internationalization using i18next and applied frontend performance optimization techniques to improve responsiveness and user experience."
+        - "Collaborated with designers, product managers, backend developers, and other stakeholders in Agile/Scrum environments, using ChatGPT for coding, debugging, refactoring, and problem solving."
+
+    - company: "Integra Media SRL"
+      position: "FullStack Developer"
+      location: "Salta, Argentina"
+      start_date: "2014-10"
+      end_date: "2021-06"
+      highlights:
+        - "Developed frontend applications across multiple projects using Ember.js, Vanilla JavaScript, and React, evolving from React class components to modern React Hooks."
+        - "Built reusable user interfaces using React, TypeScript, JavaScript (ES6+), HTML5, CSS3, Bootstrap, Less, and other frontend libraries."
+        - "Implemented client-side functionality using JavaScript, jQuery, AJAX, JSON, responsive design, REST APIs, React Router, and Redux."
+        - "Developed backend applications and REST APIs using C#, .NET Framework, .NET Core, ASP.NET MVC, ASP.NET Web API, and ASP.NET Web Forms."
+        - "Worked with Entity Framework, Entity Framework Core, LINQ, Dapper, ADO.NET, Repository Pattern, Dependency Injection, and SOLID principles."
+        - "Designed and maintained database solutions using SQL Server, T-SQL, stored procedures, views, functions, triggers, indexes, transactions, and database modeling, as well as PostgreSQL and MongoDB."
+        - "Worked with WCF, SOAP, XML, SignalR, Windows Forms, and WPF for application development and service integrations."
+        - "Developed and maintained cloud-based solutions using AWS Cognito, S3, Lambda, and Azure Functions."
+        - "Implemented automated testing and maintained code quality using Jest and SonarQube."
+        - "Used development and API tools including Webpack, Babel, npm, Git, GitHub, Swagger, Postman, and Docker."
+        - "Worked across multiple projects and technology stacks, adapting to different architectures, frameworks, libraries, and business requirements."
+
+  education:
+    - institution: "Universidad Nacional de Jujuy (UNJU)"
+      area: "Analista Programador Universitario"
+      location: "Jujuy, Argentina"
+      start_date: "2011-02"
+      end_date: "2014-03"
+
+    - institution: "Universidad Nacional de Jujuy (UNJU)"
+      area: "Diplomatura en Análisis de Datos"
+      location: "Jujuy, Argentina"
+      start_date: "2025-10"
+      end_date: "2026-01"
+      highlights:
+        - "Training in data analysis, SQL, and Power BI."
+        - "Data visualization and dashboard creation."
+
+  skills:
+    - label: "Frontend"
+      details: "React, JavaScript, HTML, HTML5, CSS, CSS3, TypeScript, ES6+, React Hooks, React Router, Redux, Redux Toolkit, Context API, Material UI, Tailwind, Bootstrap, Less, Sass/SCSS, CSS Modules, styled-components, jQuery"
+
+    - label: "UI, Forms & Component Development"
+      details: "Reusable Components, Component-Based Architecture, Storybook, Formik, React Hook Form, Yup, Responsive Design, Accessibility, ARIA, Keyboard Navigation"
+
+    - label: "Testing & Code Quality"
+      details: "Jest, React Testing Library, Enzyme, Unit Testing, ESLint, Prettier, SonarQube"
+
+    - label: "APIs & Web"
+      details: "REST APIs, Axios, Fetch, AJAX, JSON, XML, Swagger/OpenAPI, Postman"
+
+    - label: "Build, CI/CD & Tools"
+      details: "Webpack, Babel, Vite, npm, pnpm, Yarn, Git, GitHub, GitLab, Docker, CI/CD"
+
+    - label: "Backend & .NET"
+      details: "C#, .NET Framework, .NET Core, ASP.NET MVC, ASP.NET Web API, ASP.NET Web Forms, Entity Framework, Entity Framework Core, Dapper, ADO.NET, LINQ, WCF, SignalR, Dependency Injection, SOLID, Repository Pattern"
+
+    - label: "Databases"
+      details: "SQL Server, T-SQL, Stored Procedures, PostgreSQL, MongoDB"
+
+    - label: "Cloud"
+      details: "AWS Cognito, Amazon S3, AWS Lambda, Azure Functions"
+
+    - label: "Other"
+      details: "i18next, Chart.js, Windows Forms, WPF"
+
+social_networks:
+  - network: GitHub
+    username: pdgramajo
+  - network: LinkedIn
+    username: pablo-gramajo

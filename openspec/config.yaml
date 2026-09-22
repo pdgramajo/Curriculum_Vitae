@@ -1,0 +1,92 @@
+# Curriculum_Vitae — SDD configuration
+# ---------------------------------------------------------------------------
+# This file is the source of truth for how SDD phases run in THIS project.
+# It is written to be pedagogical: each section explains WHY the value was
+# chosen, not just what it is.
+#
+# Persistence mode: OpenSpec (local files). Engram is only a secondary
+# mirror, never the primary store.
+
+schema: spec-driven
+
+# Project context: keep this under 10 lines. It is loaded by every phase as
+# a quick orientation card.
+context: |
+  Personal CV generator for a macOS machine. Python 3.12 scripts with no
+  packaging (no pyproject.toml). A Textual TUI (cv_tui.py) + Bash wrappers
+  (cv, cv_tui, run_cv.sh) render CVs from YAML sources via RenderCV 2.8
+  (typst-based PDF engine). Data lives in root *.yaml files; PDFs go to
+  rendercv_output/. macOS-bound behavior: open and osascript (closes
+  Terminal). UI copy is Spanish (Rioplatense). Two venvs: .venv (TUI
+  + RenderCV) and rendercv-env (RenderCV). Owner has limited Python
+  experience: artifacts must explain WHY, not just HOW.
+
+# Strict TDD is FAIL-CLOSED to false.
+# ---------------------------------------------------------------------------
+# Why: strict TDD can only be enabled when one explicit workspace-level
+# test command covers every in-scope project. This project has ZERO test
+# infrastructure today (no pytest, no test files, no test command), so there
+# is nothing to run RED-GREEN-REFACTOR against. Flipping this to true in the
+# future requires: (1) adding a test runner (pytest recommended) and (2)
+# defining a single command from the repo root (e.g. `pytest`) in the
+# `testing:` and `rules.apply.test_command` sections below.
+strict_tdd: false
+
+# Discovered projects (one table row per project root; commands are
+# preserved per-project and never merged into a fake workspace runner).
+projects:
+  - path: "."
+    stack: "Python 3.12 scripts (Textual 8.2.5) + Bash wrappers + YAML data (RenderCV 2.8)"
+    test_command: null   # none exists today
+    notes: "Unpackaged scripts; runtime is guaranteed by venv activation in the wrappers, not by packaging."
+
+# Testing capabilities — actual detected facts as of init (2026-09-21).
+# Why a table? So future phases can see at a glance what CAN be tested and
+# with what tool, instead of assuming a stack that is not here.
+testing:
+  detected: "2026-09-21"
+  test_runner: null               # no pytest/unittest installed in either venv
+  test_layers:
+    unit: null
+    integration: null
+    e2e: null
+  coverage: null                  # no pytest-cov / coverage tool
+  quality:
+    linter: null                  # no ruff/flake8 config
+    type_checker: null            # no mypy/pyright
+    formatter: null               # no black/ruff format config
+  # Path to a venv interpreter known to work for cv_tui.py today (used only
+  # for ad-hoc checks until a real test command exists):
+  known_good_python: ".venv/bin/python3"
+
+rules:
+  # Phase rules are constraints each phase MUST respect. Each rule includes
+  # a short WHY so the reasoning survives, not just the rule.
+  proposal:
+    - "Every change MUST state its user-visible benefit in plain language (owner is not a professional developer)."
+    - "Inclusion of rollback plan is REQUIRED for any change touching cv_tui.py or the bash wrappers: a broken launcher blocks CV generation entirely."
+  specs:
+    - "Use Given/When/Then for every scenario (pedagogical, concrete and testable)."
+    - "Use RFC 2119 keywords (MUST, SHOULD, MAY) so requirements stay unambiguous."
+    - "Name requirements after behavior, not implementation (e.g. 'TUI lists all CV YAML files', not 'glob yaml')."
+  design:
+    - "Every technology choice MUST be justified with a one-line WHY (owner has limited Python experience; rationale is the main product of design)."
+    - "Prefer zero new dependencies: this project runs from two venvs with no packaging; each new dep adds setup burden for a non-expert."
+    - "Models CV YAML files as the single source of truth; scripts are thin, replaceable automation around them."
+  tasks:
+    - "Group by phase; use hierarchical numbering (1.2.3)."
+    - "Keep tasks completable in one session (owner works interactively)."
+    - "Any task introducing the test runner MUST add the workspace-level test command to config.yaml before it can claim strict TDD."
+  apply:
+    guidelines:
+      - "Follow existing patterns: script-style code with venv activation; keep TUI copy in Spanish."
+      - "Do NOT commit .venv/, rendercv-env/, __pycache__/, or rendercv_output/ generated artifacts."
+      - "Never run `open` or `osascript` in automated checks (macOS side effects)."
+    tdd: false                    # mirrors strict_tdd; keep false until a real test command exists
+    test_command: ""              # to fill in once pytest (or equivalent) exists
+  verify:
+    test_command: ""              # no test suite yet
+    build_command: ".venv/bin/python3 -m py_compile cv_tui.py"   # smoke check that the TUI module parses
+    coverage_threshold: 0         # no coverage tool yet
+  archive:
+    - "Warn before merging destructive deltas: this repo has no git history to recover from (not a git repository)."

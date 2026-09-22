@@ -1,0 +1,131 @@
+cv:
+  name: "Pablo Gramajo"
+  headline: "Data Analyst | Automation & Business Data Solutions"
+
+  location: "San Salvador de Jujuy, Argentina"
+  email: "pdgramajo@gmail.com"
+  phone: "(+54) 388 437 2397"
+
+  sections:
+
+    summary:
+      - "Technology professional with 11+ years of experience developing
+        solutions focused on process automation, data integration, and
+        operational optimization. Experience working with SQL, reporting,
+        dashboards, and data-driven tools to support business decision-making.
+        Analytical, self-driven, and problem-solving oriented profile with a
+        strong ability to learn quickly and adapt to new challenges."
+
+    experience:
+
+      - company: "Independent"
+        position: "Automation & Data Solutions Developer"
+        location: "Argentina"
+        start_date: 2025-12
+        end_date: present
+
+        highlights:
+          - "Developed internal tools and solutions focused on operational
+            process automation."
+          - "Integrated and processed data from multiple APIs and systems."
+          - "Automated repetitive tasks to reduce manual errors and improve
+            efficiency."
+          - "Built dashboards and reporting features for data analysis
+            and monitoring."
+          - "Improved operational workflows through data-driven solutions."
+
+      - company: "Planhopper"
+        position: "Developer"
+        location: "Spain"
+        start_date: "2024-07"
+        end_date: "2025-08"
+
+        highlights:
+          - "Integrated multiple APIs to centralize business data."
+          - "Collaborated on reporting and data visualization features."
+          - "Worked with backend and business teams to improve data flow
+            and processing."
+          - "Developed internal tools used across different teams."
+
+      - company: "Endava SRL"
+        position: "Developer"
+        location: "Buenos Aires, Argentina"
+        start_date: "2021-06"
+        end_date: "2024-06"
+
+        highlights:
+          - "Worked on enterprise applications involving complex business
+            logic and data flows."
+          - "Integrated APIs and validations to ensure data consistency."
+          - "Optimized data processing and application logic to improve
+            performance."
+          - "Collaborated within agile multidisciplinary teams."
+
+      - company: "Integra Media SRL"
+        position: "Full-Stack Developer"
+        location: "Salta, Argentina"
+        start_date: "2014-10"
+        end_date: "2021-06"
+
+        highlights:
+          - "Developed backend solutions focused on data processing
+            and management."
+          - "Designed and optimized SQL queries, stored procedures,
+            and transactions."
+          - "Integrated systems and data sources to support operations."
+          - "Built internal tools for data visualization and management."
+
+    education:
+
+      - institution: "National University of Jujuy (UNJU)"
+        area: "Diploma in Data Analysis"
+        location: "Jujuy, Argentina"
+        start_date: "2025-10"
+        end_date: "2026-01"
+
+        highlights:
+          - "Training in data analysis, SQL, and data visualization."
+          - "Creation of dashboards and reports using Power BI."
+          - "Applying data analysis to support business decision-making."
+
+      - institution: "National University of Jujuy (UNJU)"
+        area: "University Programmer Analyst"
+        location: "Jujuy, Argentina"
+        start_date: "2011-02"
+        end_date: "2014-03"
+
+    skills:
+
+      - label: "Data Analysis"
+        details: "SQL, Power BI, Reporting, Dashboards,
+          Data Visualization, Data Analysis"
+
+      - label: "Databases"
+        details: "SQL Server, PostgreSQL, MongoDB,
+          Data Modeling, Query Optimization"
+
+      - label: "Automation & Processes"
+        details: "Task Automation, Process Optimization,
+          Systems Integration, Workflow Improvement"
+
+      - label: "Backend & Integration"
+        details: "C#, .NET Core, ASP.NET Web API,
+          REST APIs, Data Integration"
+
+      - label: "Tools"
+        details: "Power BI, Git, Docker, CI/CD, Supabase"
+
+      - label: "Frontend"
+        details: "React, JavaScript, TypeScript"
+
+      - label: "Soft Skills"
+        details: "Analytical Thinking, Problem Solving,
+          Proactivity, Continuous Learning, Teamwork"
+
+  social_networks:
+
+    - network: "GitHub"
+      username: "pdgramajo"
+
+    - network: "LinkedIn"
+      username: "pablo-gramajo"

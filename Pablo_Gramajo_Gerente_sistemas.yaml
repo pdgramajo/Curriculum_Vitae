@@ -1,0 +1,133 @@
+cv:
+  name: "Pablo Gramajo"
+  headline: "Gerente de Sistemas | Senior Full-Stack Engineer | Líder Técnico"
+
+  location: "San Salvador de Jujuy, Argentina"
+  email: "pdgramajo@gmail.com"
+  phone: "(+54) 388 437 2397"
+
+  sections:
+    summary:
+      - "Profesional de Sistemas con más de 11 años de experiencia en el
+        diseño, desarrollo e implementación de soluciones tecnológicas para
+        empresas. Experiencia liderando proyectos de software de punta a punta,
+        definiendo arquitecturas, coordinando equipos técnicos y tomando
+        decisiones orientadas al negocio. Fuerte conocimiento en tecnologías
+        Microsoft, desarrollo web, bases de datos, integración de sistemas y
+        metodologías ágiles. Capacidad para gestionar procesos, optimizar
+        recursos, impulsar la innovación y alinear la estrategia tecnológica
+        con los objetivos de la organización."
+
+    experience:
+      - company: "Independent"
+        position: "Consultor Tecnológico / Líder Técnico"
+        location: "Argentina"
+        start_date: "2025-12"
+        end_date: "present"
+        highlights:
+          - "Dirijo el diseño y desarrollo de productos SaaS y plataformas
+            empresariales."
+          - "Defino arquitecturas técnicas, modelos de datos y estrategias de
+            escalabilidad."
+          - "Gestiono el ciclo completo de proyectos desde el análisis hasta
+            la implementación y mantenimiento."
+          - "Coordino prioridades técnicas y funcionales para garantizar la
+            entrega de soluciones de calidad."
+          - "Implemento procesos de mejora continua utilizando herramientas de
+            automatización e inteligencia artificial."
+          - "Trabajo con infraestructura cloud, control de versiones,
+            contenedores y procesos CI/CD."
+
+      - company: "Planhopper"
+        position: "Senior Full-Stack Developer"
+        location: "España"
+        start_date: "2024-07"
+        end_date: "2025-08"
+        highlights:
+          - "Participé en el diseño de soluciones para aplicaciones
+            empresariales."
+          - "Colaboré con equipos multidisciplinarios coordinando requerimientos
+            funcionales y técnicos."
+          - "Contribuí a decisiones de arquitectura y estandarización de
+            componentes reutilizables."
+          - "Implementé mejoras de rendimiento, mantenibilidad y calidad del
+            software."
+          - "Promoví buenas prácticas de desarrollo y testing."
+
+      - company: "Endava SRL"
+        position: "Senior Full-Stack Developer"
+        location: "Buenos Aires, Argentina"
+        start_date: "2021-06"
+        end_date: "2024-06"
+        highlights:
+          - "Trabajé en proyectos internacionales para clientes corporativos."
+          - "Coordiné desarrollos junto a equipos backend, frontend y áreas de
+            negocio."
+          - "Participé en decisiones de arquitectura y planificación técnica."
+          - "Colaboré en procesos ágiles y mejora continua."
+          - "Implementé soluciones enfocadas en estabilidad, rendimiento y
+            escalabilidad."
+
+      - company: "Integra Media SRL"
+        position: "Full-Stack Developer"
+        location: "Salta, Argentina"
+        start_date: "2014-10"
+        end_date: "2021-06"
+        highlights:
+          - "Desarrollé sistemas empresariales utilizando tecnologías .NET y
+            SQL Server."
+          - "Participé en proyectos de modernización tecnológica y
+            refactorización de aplicaciones."
+          - "Diseñé modelos de datos y procesos de integración entre sistemas."
+          - "Colaboré con diferentes áreas para transformar requerimientos del
+            negocio en soluciones tecnológicas."
+          - "Adquirí experiencia integral en análisis, desarrollo,
+            implementación y mantenimiento de software."
+
+    education:
+      - institution: "Universidad Nacional de Jujuy (UNJU)"
+        area: "Analista Programador Universitario"
+        location: "Jujuy, Argentina"
+        start_date: "2011-02"
+        end_date: "2014-03"
+
+      - institution: "Universidad Nacional de Jujuy (UNJU)"
+        area: "Diplomatura Universitaria en Análisis de Datos desde Cero – Acelera tu Futuro"
+        location: "Jujuy, Argentina"
+        start_date: "2025-10"
+        end_date: "2026-01"
+
+    skills:
+      - label: "Gestión y Liderazgo"
+        details: "Liderazgo técnico, Gestión de proyectos, Coordinación de
+          equipos, Planificación, Toma de decisiones, Mejora continua"
+
+      - label: "Arquitectura y Estrategia"
+        details: "Arquitectura de software, Diseño de soluciones,
+          Integración de sistemas, APIs, Sistemas escalables"
+
+      - label: "Tecnologías Microsoft"
+        details: "C#, ASP.NET, .NET Framework, .NET Core, Web API"
+
+      - label: "Frontend"
+        details: "React, TypeScript, JavaScript, HTML, CSS,
+          Material UI, Bootstrap"
+
+      - label: "Bases de Datos"
+        details: "SQL Server, PostgreSQL, MongoDB,
+          Entity Framework, Dapper, Modelado de datos"
+
+      - label: "Infraestructura y DevOps"
+        details: "Azure, Docker, Git, CI/CD, AWS S3,
+          AWS Cognito, Supabase"
+
+      - label: "Metodologías"
+        details: "Agile, Scrum, Jira, Confluence,
+          Calidad de software, Testing"
+
+  social_networks:
+    - network: "GitHub"
+      username: "pdgramajo"
+
+    - network: "LinkedIn"
+      username: "pablo-gramajo"

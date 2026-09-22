@@ -1,0 +1,123 @@
+cv:
+  name: "Pablo Gramajo"
+  headline: "Cajero | Repositor | Atención al Cliente"
+  location: "San Salvador de Jujuy, Argentina"
+  email: "pdgramajo@gmail.com"
+  phone: "(+54) 388 437 2397"
+
+  sections:
+    summary:
+      - "Persona responsable, organizada y orientada a la atención al cliente.
+        Experiencia en manejo de caja, cobro de productos, reposición de
+        mercadería y atención al público. Capacidad para trabajar en equipo,
+        adaptarse a entornos dinámicos y brindar una atención cordial y
+        eficiente. Comprometido con el cumplimiento de objetivos, el orden del
+        sector de trabajo y la satisfacción de los clientes."
+
+    experience:
+      - company: "Carnicería Que Lomo"
+        position: "Cajero y Atención al Cliente"
+        location: "San Salvador de Jujuy, Argentina"
+        start_date: "2025-10"
+        end_date: "present"
+        highlights:
+          - "Cobro de productos en efectivo, transferencias y otros medios de
+            pago."
+          - "Apertura y cierre de caja."
+          - "Atención y asesoramiento a clientes."
+          - "Reposición de mercadería y control de stock."
+          - "Mantenimiento del orden y limpieza del área de trabajo."
+          - "Colaboración en tareas generales del comercio."
+
+      - company: "Canal 2 Jujuy"
+        position: "Promotor"
+        location: "San Salvador de Jujuy, Argentina"
+        start_date: "2013-01"
+        end_date: "2014-01"
+        highlights:
+          - "Promoción de productos y servicios."
+          - "Atención personalizada al público."
+          - "Entrega de material promocional y asistencia en eventos."
+          - "Representación de la imagen institucional frente a clientes."
+          - "Comunicación efectiva y orientación al cliente."
+
+      - company: "Chango Más"
+        position: "Promotor"
+        location: "San Salvador de Jujuy, Argentina"
+        start_date: "2012-01"
+        end_date: "2012-10"
+        highlights:
+          - "Atención y orientación a clientes dentro del establecimiento."
+          - "Promoción de productos, ofertas y campañas comerciales."
+          - "Colaboración con la exhibición y orden de mercadería."
+          - "Apoyo a distintos sectores según necesidades operativas."
+
+      - company: "Programa Conectar Igualdad"
+        position: "Referente Técnico"
+        location: "Jujuy, Argentina"
+        start_date: "2014-03"
+        end_date: "2015-03"
+        highlights:
+          - "Atención y asistencia a usuarios."
+          - "Resolución de consultas e incidencias."
+          - "Organización y seguimiento de equipamiento."
+          - "Trabajo coordinado con instituciones educativas."
+          - "Capacidad para resolver problemas y brindar soporte."
+
+      - company: "Profesional Independiente"
+        position: "Analista Programador"
+        location: "Argentina"
+        start_date: "2015-04"
+        end_date: "2025-09"
+        highlights:
+          - "Desarrollo de proyectos para distintos clientes."
+          - "Gestión de tareas y cumplimiento de objetivos."
+          - "Trabajo en equipo y comunicación con usuarios."
+          - "Resolución de problemas y organización de actividades."
+          - "Adaptación a diferentes entornos y necesidades operativas."
+
+    education:
+      - institution: "Universidad Nacional de Jujuy (UNJU)"
+        area: "Diplomatura Universitaria en Análisis de Datos desde Cero – Acelera tu Futuro"
+        location: "Jujuy, Argentina"
+        start_date: "2025-10"
+        end_date: "2026-01"
+        highlights:
+          - "Formación en análisis e interpretación de datos."
+          - "Creación de reportes y visualizaciones."
+          - "Desarrollo de habilidades analíticas y resolución de problemas."
+
+      - institution: "Universidad Nacional de Jujuy (UNJU)"
+        area: "Analista Programador Universitario"
+        location: "Jujuy, Argentina"
+        start_date: "2011-02"
+        end_date: "2014-03"
+
+    skills:
+      - label: "Atención al Cliente"
+        details: "Atención personalizada, Resolución de consultas,
+          Comunicación efectiva, Orientación al cliente"
+
+      - label: "Caja y Cobros"
+        details: "Manejo de efectivo, Apertura y cierre de caja,
+          Cobro con transferencias y medios electrónicos"
+
+      - label: "Reposición y Control"
+        details: "Reposición de mercadería, Control de stock,
+          Organización de productos, Orden y limpieza"
+
+      - label: "Competencias Laborales"
+        details: "Responsabilidad, Puntualidad, Trabajo en equipo,
+          Adaptabilidad, Proactividad"
+
+      - label: "Herramientas Informáticas"
+        details: "Microsoft Office, Sistemas informáticos,
+          Manejo general de computadoras"
+
+      - label: "Resolución de Problemas"
+        details: "Capacidad analítica, Organización,
+          Gestión de tareas y seguimiento"
+
+  social_networks:
+    - network: "LinkedIn"
+      username: "pablo-gramajo"

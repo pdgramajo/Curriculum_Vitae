@@ -1,0 +1,6 @@
+.venv/
+rendercv-env/
+rendercv_output/
+__pycache__/
+cvapp.log
+.DS_Store

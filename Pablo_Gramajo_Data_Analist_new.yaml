@@ -1,0 +1,141 @@
+cv:
+  name: "Pablo Gramajo"
+  headline: "Data Analyst | Automation & Business Data Solutions"
+
+  location: "San Salvador de Jujuy, Argentina"
+  email: "pdgramajo@gmail.com"
+  phone: "(+54) 388 437 2397"
+
+  sections:
+
+    summary:
+      - "Technology professional with 11+ years of experience developing
+        solutions focused on process automation, data integration, and
+        operational optimization. Proficient in SQL, Power BI, and
+        dashboard creation to turn raw data into actionable insights.
+        Analytical, self‑driven, and problem‑solving oriented with a rapid
+        learning curve for new data challenges."
+
+    experience:
+
+      - company: "Independent"
+        position: "Automation & Data Solutions Developer"
+        location: "Argentina"
+        start_date: "2025-12"
+        end_date: "present"
+
+        highlights:
+          - "Developed internal tools that automated repetitive reporting tasks,
+            cutting manual effort by ~35 %."
+          - "Integrated and processed data from 5+ external APIs,
+            consolidating >200,000 records daily."
+          - "Built Power BI dashboards used by senior management to monitor
+            key operational KPIs in real‑time."
+          - "Designed ETL pipelines (SQL) that reduced data latency from
+            24 h to under 2 h."
+          - "Improved operational workflows through data‑driven process redesign,
+            delivering a 20 % increase in throughput."
+
+      - company: "Planhopper"
+        position: "Developer"
+        location: "Spain"
+        start_date: "2024-07"
+        end_date: "2025-08"
+
+        highlights:
+          - "Integrated 8+ APIs to centralize business data, creating a unified
+            data warehouse (PostgreSQL)."
+          - "Collaborated on reporting and data‑visualization features,
+            delivering 12 Power BI reports that reduced decision‑making time
+            by 25 %."
+          - "Worked with backend and business teams to improve data flow
+            and processing, achieving a 15 % performance gain in query execution."
+          - "Developed internal tools used across different teams,
+            automating data extraction tasks that saved ~10 h/week."
+
+      - company: "Endava SRL"
+        position: "Developer"
+        location: "Buenos Aires, Argentina"
+        start_date: "2021-06"
+        end_date: "2024-06"
+
+        highlights:
+          - "Implemented enterprise applications with complex business logic
+            and high‑volume data processing."
+          - "Designed and optimized SQL queries and stored procedures,
+            improving query speed by up to 40 %."
+          - "Built validation layers to ensure data consistency across
+            multiple micro‑services."
+          - "Participated in agile, cross‑functional teams delivering
+            bi‑weekly releases on schedule."
+
+      - company: "Integra Media SRL"
+        position: "Full‑Stack Developer"
+        location: "Salta, Argentina"
+        start_date: "2014-10"
+        end_date: "2021-06"
+
+        highlights:
+          - "Developed backend solutions focused on data processing and management,
+            handling >1 M records per month."
+          - "Designed and tuned SQL Server databases, creating indexes and
+            partitioning strategies that reduced query times by 30 %."
+          - "Integrated heterogeneous systems and data sources to support
+            daily operations."
+          - "Built internal tools for data visualization and management,
+            enabling non‑technical users to generate ad‑hoc reports."
+
+    education:
+
+      - institution: "National University of Jujuy (UNJU)"
+        area: "Diploma in Data Analysis"
+        location: "Jujuy, Argentina"
+        start_date: "2023-10"
+        end_date: "2024-01"
+
+        highlights:
+          - "Training in data analysis, SQL, and data visualization."
+          - "Created interactive dashboards and reports using Power BI."
+          - "Applied statistical techniques to support business decision‑making."
+
+      - institution: "National University of Jujuy (UNJU)"
+        area: "University Programmer Analyst"
+        location: "Jujuy, Argentina"
+        start_date: "2011-02"
+        end_date: "2014-03"
+
+    skills:
+
+      - label: "Data Analysis"
+        details: "SQL, Power BI, Reporting, Dashboards,
+          Data Visualization, Data Analysis"
+
+      - label: "Databases"
+        details: "SQL Server, PostgreSQL, MongoDB,
+          Data Modeling, Query Optimization"
+
+      - label: "Automation & Processes"
+        details: "Task Automation, Process Optimization,
+          Systems Integration, Workflow Improvement"
+
+      - label: "Backend & Integration"
+        details: "C#, .NET Core, ASP.NET Web API,
+          REST APIs, Data Integration"
+
+      - label: "Tools"
+        details: "Power BI, Git, Docker, CI/CD, Supabase"
+
+      - label: "Frontend"
+        details: "React, JavaScript, TypeScript"
+
+      - label: "Soft Skills"
+        details: "Analytical Thinking, Problem Solving,
+          Proactivity, Continuous Learning, Teamwork"
+
+  social_networks:
+
+    - network: "GitHub"
+      username: "pdgramajo"
+
+    - network: "LinkedIn"
+      username: "pablo-gramajo"

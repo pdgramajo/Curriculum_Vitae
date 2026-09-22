@@ -1,0 +1,94 @@
+cv:
+  name: "Pablo Gramajo"
+  headline: "Senior Frontend Engineer (React)"
+  location: "San Salvador de Jujuy, Argentina"
+  email: "pdgramajo@gmail.com"
+  phone: "(+54) 388 437 2397"
+
+  sections:
+    summary:
+      - "Senior Software Engineer with 11 years of experience, currently focused on frontend development using React and modern JavaScript (ES6+). Strong experience building scalable, reusable, and maintainable UI components, working with state management solutions, and ensuring code quality through testing. Proven ability to collaborate with cross-functional teams to deliver high-quality user experiences."
+
+    experience:
+      - company: "Planhopper"
+        position: "Senior Frontend Developer"
+        location: "Spain"
+        start_date: "2024-07"
+        end_date: "2025-08"
+        highlights:
+          - "Developed and maintained frontend applications using React, JavaScript (ES6+), and Material UI."
+          - "Implemented reusable and scalable UI components following best practices."
+          - "Worked with state management patterns and global state handling."
+          - "Integrated frontend features with REST APIs and backend services."
+          - "Wrote unit tests using Jest and React Testing Library."
+          - "Leveraged AI tools (ChatGPT, GitHub Copilot) to accelerate development, debugging, and refactoring."
+          - "Focused on performance optimization and maintainability."
+
+      - company: "Endava SRL"
+        position: "Senior Frontend Developer"
+        location: "Buenos Aires, Argentina"
+        start_date: "2021-06"
+        end_date: "2024-06"
+        highlights:
+          - "Built and maintained enterprise-level web applications using React, TypeScript, and JavaScript."
+          - "Implemented component-based architecture for scalability and reusability."
+          - "Worked with state management solutions (Redux and similar patterns)."
+          - "Developed and maintained unit tests and component documentation (Storybook)."
+          - "Collaborated with designers, product managers, and backend teams."
+          - "Leveraged AI-assisted tools to improve development speed and code quality."
+          - "Improved application performance and user experience."
+
+      - company: "Integra Media SRL"
+        position: "FullStack Developer"
+        location: "Salta, Argentina"
+        start_date: "2014-10"
+        end_date: "2021-06"
+        highlights:
+          - "Developed frontend applications using React, Ember.js, and Bootstrap."
+          - "Built backend services with C# and .NET, integrating APIs consumed by frontend applications."
+          - "Worked with SQL Server and data modeling."
+          - "Gained strong full-stack experience, later specializing in frontend development."
+
+    education:
+      - institution: "Universidad Nacional de Jujuy (UNJU)"
+        area: "Analista Programador Universitario"
+        location: "Jujuy, Argentina"
+        start_date: "2011-02"
+        end_date: "2014-03"
+
+      - institution: "Universidad Nacional de Jujuy (UNJU)"
+        area: "Diplomatura en Análisis de Datos"
+        location: "Jujuy, Argentina"
+        start_date: "2025-10"
+        end_date: "2026-01"
+        highlights:
+          - "Training in data analysis, SQL, and Power BI."
+          - "Data visualization and dashboard creation."
+
+    skills:
+      - label: "Frontend"
+        details: "React, JavaScript (ES6+), TypeScript, HTML5, CSS3, Material UI, Tailwind, Bootstrap"
+
+      - label: "State Management"
+        details: "Redux, Context API, Zustand (conceptual knowledge)"
+
+      - label: "Testing"
+        details: "Jest, React Testing Library, Unit Testing"
+
+      - label: "Architecture & Practices"
+        details: "Component-based architecture, Clean Code, Performance optimization"
+
+      - label: "AI & Developer Productivity"
+        details: "ChatGPT, GitHub Copilot, OpenCode (LLM-assisted development, code generation, refactoring, debugging)"
+
+      - label: "Backend (Supporting)"
+        details: "C#, .NET Core, REST APIs"
+
+      - label: "Tools"
+        details: "Git, Jira, Confluence, Agile/Scrum, Storybook"
+
+  social_networks:
+      - network: GitHub
+        username: pdgramajo
+      - network: LinkedIn
+        username: pablo-gramajo
