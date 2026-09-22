@@ -1,7 +1,7 @@
-# Apply Progress — cv-tui-redesign (PR 1: Phases 0 and 1 · PR 2: Phase 2 discovery · PR 3: Phase 2 rendering · PR 4: Phase 3 CLI · PR 5: Phase 4 TUI)
+# Apply Progress — cv-tui-redesign (PR 1: Phases 0 and 1 · PR 2: Phase 2 discovery · PR 3: Phase 2 rendering · PR 4: Phase 3 CLI · PR 5: Phase 4 TUI · PR 6: Phase 5 launchers + legacy removal + acceptance)
 
-Chain: 6 PRs, stacked-to-main. PR 1 of 6 → git baseline + scaffold/config. PR 2 of 6 → Phase 2 discovery (tasks 2.1–2.3). PR 3 of 6 → Phase 2 rendering (tasks 2.4–2.11). PR 4 of 6 → Phase 3 CLI (tasks 3.1–3.5). PR 5 of 6 → Phase 4 TUI (tasks 4.1–4.5).
-Status (this section): **34/44 tasks complete** (0.1–0.3, 1.0–1.9, 2.1–2.3, 2.4–2.11, 3.1–3.5, 4.1–4.5) — see "Estado actual" at the end for the cumulative count.
+Chain: 6 PRs, stacked-to-main. PR 1 of 6 → git baseline + scaffold/config. PR 2 of 6 → Phase 2 discovery (tasks 2.1–2.3). PR 3 of 6 → Phase 2 rendering (tasks 2.4–2.11). PR 4 of 6 → Phase 3 CLI (tasks 3.1–3.5). PR 5 of 6 → Phase 4 TUI (tasks 4.1–4.5). PR 6 of 6 → Phase 5 launchers + legacy removal + final acceptance (tasks 5.1–5.10).
+Status (this section): **44/44 tasks complete** (0.1–0.3, 1.0–1.9, 2.1–2.3, 2.4–2.11, 3.1–3.5, 4.1–4.5, 5.1–5.10) — see "Estado actual" at the end for the cumulative count.
 
 ## Batch state (PR 1)
 
@@ -137,10 +137,10 @@ Status (this section): **34/44 tasks complete** (0.1–0.3, 1.0–1.9, 2.1–2.3
 3. **`run_tui` loads config before the lazy TUI import.** For the `tui` subcommand the callback already loaded settings; `run_tui()` loads again (harmless: cheap, idempotent) and also sets up logging in both paths. Matches design 3.1 ("config load happens FIRST for every path").
 4. The `cvapp.log` file is created at the project root by real headless runs (FileHandler opens at construction). Gitignored since baseline; `git status --porcelain` is clean after the run.
 
-## Estado actual (cumulative across PR 1–5)
+## Estado actual (cumulative across PR 1–6)
 
-- **Tasks complete: 34/44** (0.1–0.3, 1.0–1.9, 2.1–2.3, 2.4–2.11, 3.1–3.5, 4.1–4.5).
-- Remaining: PR 6 = Phase 5 launchers + legacy removal + README + acceptance (tasks 5.1–5.10).
+- **Tasks complete: 44/44** (0.1–0.3, 1.0–1.9, 2.1–2.3, 2.4–2.11, 3.1–3.5, 4.1–4.5, 5.1–5.10).
+- Remaining: none — the chain is complete.
 
 ## PR 3 status update (historical — superseded by "Estado actual" above)
 - **Tasks complete**: 24/44 (0.1–0.3, 1.0–1.9, 2.1–2.3, 2.4–2.11)
@@ -187,3 +187,39 @@ Status (this section): **34/44 tasks complete** (0.1–0.3, 1.0–1.9, 2.1–2.3
 
 - App-level chrome is invisible under pushed screens in Textual ≥ 8 (deviation 1) — a genuine framework gotcha, verified twice (screenshot probe + Header code path `screen_title`/`screen_sub_title` read the CURRENT screen, so an App-level Header would also show stale titles).
 - The forbidden-pattern guard (`tests/test_forbidden_patterns.py`, task 2.9) flags forbidden strings ANYWHERE in `src/**`, including docstrings/comments that merely NAME them (e.g. a docstring saying "no os.execv"). Cost: docstrings must avoid naming the patterns. Not a bug; documented so PR 6 writers phrase comments accordingly.
+
+---
+
+## Batch state (PR 6 — Phase 5: launchers, legacy removal, smoke, README, acceptance; tasks 5.1–5.10)
+
+- Branch: `feature/cv-tui-redesign-pr6` (stacked from `feature/cv-tui-redesign-pr5` tip `fb72908`).
+- Commits (work-unit):
+  - `8126fa4` feat(launchers): replace legacy entry points with cvapp launchers — `cv`, `cv_tui`, `Generar CV.command` (tasks 5.1–5.3)
+  - `174b56d` refactor: remove legacy cv_tui.py monolith and run_cv.sh — deletions only (task 5.5; see deviation 1)
+  - `3609043` chore(config): align console script to cvapp.cli:app and drop stale ruff exclude — pyproject entry point + `exclude = ["cv_tui.py"]` + comment; `src/cvapp/cli.py` stale type-ignore (resolves PR 4 deviation 1, PR 1 deviation 3's "remove with Phase 5" promise, PR 5 deviation 9)
+  - `f06edf5` test(smoke): add opt-in real RenderCV smoke test — `tests/smoke/test_smoke.py` + pyproject `addopts` (task 5.6)
+  - `6840d26` docs: rewrite README with unified command and config docs (task 5.7)
+  - `docs(sdd): mark PR 6 tasks complete and persist apply progress` — tasks.md `[x]` for 5.1–5.10, this merged apply-progress (tasks 5.4, 5.8, 5.9 verified; 5.10 verified headlessly, double-click manual)
+- No push, no PR: delivery is the feature branch + work-unit commits (real PR is opened by the user).
+- Mode: Standard (no strict TDD — no new logged code under test; verification is the real-launcher runtime harness below).
+- Previous merges: PR 1 + PR 2 + PR 3 + PR 4 + PR 5 base (`feature/cv-tui-redesign-pr5` tip).
+
+## Work Unit Checklist — PR 6 (launchers + legacy removal + acceptance)
+
+- Unit M — launchers (tasks 5.1, 5.2, 5.3): the three files rewritten per design §2.3 and `chmod +x`. Task 5.4 red verifications against the REAL launcher — (a) foreign cwd: `cd ~ && /Users/pdgramajo/Curriculum_Vitae/cv list` → the 11 project CVs, exit 0 (root resolved from script location, not cwd); (b) missing venv: copy of `cv` in `/tmp/cv-noenv` → `❌ No se encontró el entorno virtual (.venv) en /tmp/cv-noenv`, exit 1; (c) equivalence: `./cv list` output AND exit code byte-identical to `PYTHONPATH=src CVAPP_PROJECT_ROOT=. .venv/bin/python3 -m cvapp list` (both exit 0); (d) real headless render: `./cv render Pablo_Gramajo` → `/Users/pdgramajo/Curriculum_Vitae/rendercv_output/Pablo_Gramajo.pdf` (64 KB) printed on stdout, PDF NOT opened, exit 0, no `.typ/.md/.html` intermediates; (e) `./cv version` → `2.0.0`, exit 0; (f) `./cv` no args → TUI opens (process alive after 4 s, killed exit 143; ANSI capture shows MainScreen "Generador de CVs — 11 CVs disponibles", "🎯 Seleccioná tu CV", Pablo_Gramajo first + selected, footer "q Salir"); (g) `./cv frobnicate` → usage error `No such command 'frobnicate'.`, exit 2; (h) `./cv render No_Existe` → stderr `✗ No se encontró ningún CV llamado 'No_Existe'. (detalles en cvapp.log)`, exit 1.
+- Unit N — legacy removal (task 5.5): pre-deletion greps → no `import cv_tui`/`from cv_tui` anywhere in `src/` or `tests/`; `cv_tui` mentions only where legitimate (README alias doc, pyproject exclude — both superseded in this PR). Deleted: `cv_tui.py` (285-line exec-script monolith carrying the osascript/shell strings) + `run_cv.sh` (walk-up venv finder). Post-deletion: `grep -rn "run_cv" cv cv_tui "Generar CV.command" src/ README.md` → **zero matches** (the README documents the removal without the literal name, per spec scenario "run_cv.sh is gone"). Rollback boundary: `git revert 174b56d` — both legacy files return; new launchers + package remain but unused (safe).
+- Unit O — config alignment: `[project.scripts] cv = "cvapp.cli:app"` (design §4.7; declarative entry point — nothing pip-installs it, runtime unchanged) + removed `exclude = ["cv_tui.py"]` and its stale comment + dropped the `# type: ignore[import-not-found]` in `src/cvapp/cli.py` (PR 5 deviation 9). `make check` green afterwards.
+- Unit P — smoke (task 5.6): `tests/smoke/test_smoke.py` — module-level `pytest.mark.smoke`; copies the real `Pablo_Gramajo.yaml` (read-only source) into `tmp_path`; pre-creates `foto_2024.png` tripwire in the output dir; runs real `RenderingService.render(open_pdf=False)`; asserts PDF exists with bytes, no `.typ/.md/.html` leftovers, photo survives, source list == `["Pablo_Gramajo"]`. `pytest -m smoke` → `1 passed, 40 deselected in 1.10s` (real RenderCV + typst compile in tmp). Bonus guard: `addopts = ["-m", "not smoke"]` in pyproject makes bare `pytest` = unit suite per design §8 (verified `40 passed, 1 deselected`).
+- Unit Q — README (task 5.7): rewritten in Spanish — unified command table (`./cv`, subcommands, `python -m cvapp` equivalence, `cv_tui` alias), `cvapp.yaml` keys table with defaults + "absent file = defaults, behaves exactly as before", `CVAPP_LOG_LEVEL` override, behavior-change section (TUI quit no longer closes Terminal; `.command` pauses only on error), legacy-shell-script removal documented without the literal name (deviation-safe), dev commands (`make test|lint|format|check`, `pytest -m smoke`), reinstall hint for rendercv. No `cvapp.yaml.example` (design open question 4: README only). `6840d26`: 88 insertions / 127 deletions.
+- Unit R — final acceptance (tasks 5.8, 5.9, 5.10): (5.8) forbidden-pattern scan `shell=True|os\.execv|osascript` in `src/**` → zero (persistently enforced by the 2.9 guard test); no exit-code-10 usage in `cli.py`/`tui/`. (5.9) `make check` green; `pytest -m smoke` green; CV YAMLs byte-identical to baseline (`git diff baseline -- '*.yaml' '*.yml'` empty — user data untouched); `git status --porcelain` clean with no stray artifacts; real-launcher render re-run from `$HOME` → PDF in `rendercv_output/`, exit 0. (5.10) Finder double-click is inherently manual — the failure path was verified headlessly (`printf '\n' | "./Generar CV.command" render No_Existe` → Spanish error + "Presioná Enter para cerrar esta ventana..." + exit 1; stdin EOF returns immediately) and the delegation path `./Generar CV.command list` ≡ `./cv list`; the real double-click remains a manual follow-up for the user.
+
+## PR 6 deviations and issues (honest, documented)
+
+1. **Task 5.5's "commit the switch + deletion as ONE commit" was split into TWO commits** (`8126fa4` launchers, `174b56d` deletions-only). The proposal phase-5 rule the task cites ("no destructive file operation happens in the same commit as feature code") is satisfied STRICTLY by the split; merging feature (launcher rewrite) with destruction (file deletion) in one commit is precisely what the rule forbids. Both commits keep the tree green. Deviation from the task wording, faithful to the rule it cites.
+2. **`addopts = ["-m", "not smoke"]` added to pyproject (with task 5.6).** Not in any task's text, but required to make design §8's "bare `pytest` = unit suite" true by default for the new smoke file. Gotcha: the TOML-LIST form is mandatory — the string form `"-m not smoke"` mis-parses (argparse takes "not" as `-m`'s value and treats "smoke" as a path).
+3. **`.pytest_cache/` needs NO `.gitignore` change (PR 1 issue resolved).** Pytest writes `.pytest_cache/.gitignore` containing `*`, so the cache is invisible to git; `git status --porcelain` stays clean with zero repo changes. Decided: no action.
+4. Real render of `Pablo_Gramajo.yaml` completes in ~1.1 s (RenderCV + typst compile in tmp) — fast enough to be a committed opt-in smoke.
+
+## Issues found
+
+- None blocking. `cvapp.log` at the repo root is recreated by each real run — gitignored since baseline; `git status --porcelain` remains clean (reconfirms PR 4 issue 4).
