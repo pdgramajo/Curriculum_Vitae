@@ -8,6 +8,7 @@ cv = "cvapp.cli:app"      # declares the canonical entry point (design 4.7)
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["src"]      # pytest >= 7: imports cvapp from src/ without PYTHONPATH
+addopts = ["-m", "not smoke"]  # bare `pytest` = unit suite (design 8); `pytest -m smoke` opt-in
 markers = ["smoke: opt-in real RenderCV render (invoke with pytest -m smoke)"]
 
 [tool.ruff]
