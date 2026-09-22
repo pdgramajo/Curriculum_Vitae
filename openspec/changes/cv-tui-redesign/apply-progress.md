@@ -75,3 +75,34 @@ Status: **16/44 tasks complete** (0.1–0.3, 1.0–1.9, 2.1–2.3).
 
 - None — implementation matches design §4.3 exactly; no deviations this batch.
 - Note (not a deviation): `find_cv_sources` resolves `cvs_dir` (`Path.resolve()`) before globbing so every `CVSource.path` is absolute regardless of how the dir was spelled — consistent with config.py's `_resolve_path` behavior and with design's "path: absolute path to the YAML". `UnknownCVError`/`AmbiguousCVError` carry plain Spanish messages (matching the ConfigError convention) for direct reuse by the Phase-3 CLI and Phase-4 TUI error screens.
+---
+
+## Batch state (PR 3 — rendering, tasks 2.4–2.11)
+
+- Branch: `feature/cv-tui-redesign-pr3` (stacked from `feature/cv-tui-redesign-pr2`, per chained strategy).
+- Commits (work-unit):
+  - `feat(render): add RenderCV service with safe argv rendering and tests` — `src/cvapp/core/rendercv.py`, `tests/test_rendercv.py` (tasks 2.4–2.8)
+  - `test(render): add forbidden-pattern guard` — `tests/test_forbidden_patterns.py` (task 2.9)
+  - `docs(sdd): mark PR 3 tasks complete and persist apply progress` — `tasks.md` `[x]` for 2.4–2.11, this merged apply-progress (tasks 2.10–2.11 verified)
+- No push, no PR: delivery is the feature branch + work-unit commits.
+- Mode: Standard (no strict TDD; threat-matrix RED cases executed: argv, cleanup/resolver, lifecycle).
+- Previous merges: PR 1 + PR 2 base (feature/cv-tui-redesign-pr2 tip).
+
+## Work Unit Checklist — PR 3 (rendering)
+
+- Unit E — rendering core (tasks 2.4, 2.5, 2.6, 2.7, 2.8):
+  - **RED (2.4–2.6)**: `pytest tests/test_rendercv.py -v` → `3 passed` (exit 0). Tests covered exact argv element-by-element with spaces, photo-safe cleanup + resolver behavior, timeout/nonzero/missing-exe/open-pdf lifecycle (including Darwin guard and headless path never calling open).
+  - **GREEN (2.7–2.8)**: Implementation `src/cvapp/core/rendercv.py` with pure helpers (`build_rendercv_command`, `resolve_rendercv_executable`, `snapshot_output_dir`, `cleanup_intermediates`) and `RenderingService.render/open_pdf`. All rendercv tests pass.
+  - Quality gates: `ruff check .` → All checks passed; `ruff format --check .` → clean; `pyright` → 0 errors, 0 warnings.
+
+- Unit F — guard (task 2.9): `tests/test_forbidden_patterns.py` created; `pytest tests/test_forbidden_patterns.py -v` → passed. Scans all `src/*.py` and asserts zero `shell=True`, `os.execv`, `osascript`. (Initial violation was only in a docstring line; fixed.)
+
+- Unit G — manual smoke (task 2.10): executed per instruction in `/tmp/cvapp-smoke` with `foto_2024.png` tripwire. Result: `/tmp/cvapp-smoke/cvapp-out/Pablo_Gramajo.pdf` created; `ls /tmp/cvapp-smoke/cvapp-out/` shows only `Pablo_Gramajo.pdf` and `foto_2024.png` (no `.typ/.md/.html` intermediates). Real `rendercv_output/` untouched.
+
+- Unit H — coverage (task 2.11, informational): `pytest --cov=cvapp --cov-report=term-missing -q` → overall **87%** coverage (config 100%, discovery 97%, rendercv 75%, __init__ 100%). Goal ≥80% met overall; TUI excluded. No gate enforced.
+
+## PR 3 deviations and issues
+- None — implementation matches design §4.4–4.5 and spec cv-rendering exactly. The forbidden-pattern test initially flagged a docstring mentioning `shell=True` (comment-only); corrected to a neutral phrase.
+
+## Status update
+- **Tasks complete**: 24/44 (0.1–0.3, 1.0–1.9, 2.1–2.3, 2.4–2.11)
