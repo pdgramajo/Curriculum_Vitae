@@ -1,7 +1,7 @@
-# Apply Progress — cv-tui-redesign (PR 1: Phases 0 and 1)
+# Apply Progress — cv-tui-redesign (PR 1: Phases 0 and 1 · PR 2: Phase 2 discovery)
 
-Chain: 6 PRs, stacked-to-main. This is PR 1 of 6 → git baseline + scaffold/config.
-Status: **13/44 tasks complete** (0.1–0.3, 1.0–1.9).
+Chain: 6 PRs, stacked-to-main. PR 1 of 6 → git baseline + scaffold/config. PR 2 of 6 → Phase 2 discovery (tasks 2.1–2.3).
+Status: **16/44 tasks complete** (0.1–0.3, 1.0–1.9, 2.1–2.3).
 
 ## Batch state (PR 1)
 
@@ -45,8 +45,33 @@ Status: **13/44 tasks complete** (0.1–0.3, 1.0–1.9).
 
 ## Remaining work (next batches)
 
-- PR 2: Phase 2 discovery + rendering (tasks 2.1–2.11).
-- PR 3: Phase 2b CLI tests (2.12–2.15).
+- PR 3: Phase 2 rendering (tasks 2.4–2.11).
 - PR 4: Phase 3 CLI (3.1–3.7).
 - PR 5: Phase 4 TUI (4.1–4.8).
-- PR 6: Phase 5 legacy removal + README + acceptance (5.1–5.7).
+- PR 6: Phase 5 legacy removal + README + acceptance (5.1–5.10).
+
+---
+
+## Batch state (PR 2 — discovery, tasks 2.1–2.3)
+
+- Branch: `feature/cv-tui-redesign-pr2` (from `feature/cv-tui-redesign-pr1`-tip state, per stacked-to-main chain; branch created by the orchestrator).
+- Commits:
+  - `feat(discovery): add CV source discovery with tests` — `src/cvapp/core/discovery.py` + `tests/test_discovery.py`.
+  - `docs(sdd): mark PR 2 tasks complete and persist apply progress` — tasks.md `[x]` for 2.1–2.3 + this merged apply-progress.
+- No push, no PR: delivery is the feature branch + work-unit commits (real PR is opened by the user).
+- Mode: Standard (no strict TDD; the threat-matrix-mapped RED in task 2.1 was executed first anyway — collection error observed before any implementation).
+- Previous merges: PR 1 commit `761839a` (docs) is the base of this branch.
+
+## Work Unit Checklist — PR 2 (discovery)
+
+- Unit D — discovery (tasks 2.1, 2.2, 2.3):
+  - **RED**: `pytest tests/test_discovery.py` → collection error `ModuleNotFoundError: No module named 'cvapp.core.discovery'` (exit 2) — the task-2.1 RED signal, before any implementation.
+  - **GREEN**: same command → `10 passed in 0.04s` (exit 0). Full unit suite `pytest -m "not smoke"` → `23 passed in 0.16s` (PR 1's 13 + 10 new, no regressions).
+  - Runtime harness (task 2.3): `PYTHONPATH=src .venv/bin/python3 -c "from cvapp.core.discovery import find_cv_sources; print([s.name for s in find_cv_sources(__import__('pathlib').Path('.'))])"` → exactly the 11 real stems sorted (`['Pablo_Gramajo', 'Pablo_Gramajo_Analista_Automatizacion_Sr', 'Pablo_Gramajo_Data_Analist', 'Pablo_Gramajo_Data_Analist_new', 'Pablo_Gramajo_FrontEnd2', 'Pablo_Gramajo_Frontend_CV', 'Pablo_Gramajo_FullStack_CV', 'Pablo_Gramajo_FullStack_CV_es', 'Pablo_Gramajo_Gerente_sistemas', 'Pablo_Gramajo_Net_CV', 'Pablo_Gramajo_react_CV']`, exit 0).
+  - Quality gates: `ruff check .` → "All checks passed!"; `ruff format --check .` → clean (new files were formatted once by `ruff format`); `pyright` → `0 errors, 0 warnings, 0 informations`.
+  - Rollback boundary: `git revert` of the PR 2 feature commit (`feat(discovery): ...`) — restores exact PR 1 state; the app still runs on the old files (`cv_tui.py` etc. untouched), and nothing else references `cvapp.core.discovery` yet.
+
+## PR 2 deviations and issues
+
+- None — implementation matches design §4.3 exactly; no deviations this batch.
+- Note (not a deviation): `find_cv_sources` resolves `cvs_dir` (`Path.resolve()`) before globbing so every `CVSource.path` is absolute regardless of how the dir was spelled — consistent with config.py's `_resolve_path` behavior and with design's "path: absolute path to the YAML". `UnknownCVError`/`AmbiguousCVError` carry plain Spanish messages (matching the ConfigError convention) for direct reuse by the Phase-3 CLI and Phase-4 TUI error screens.
