@@ -130,7 +130,9 @@ class RenderingService:
 
         before = snapshot_output_dir(output_dir)
         try:
-            cmd = build_rendercv_command(cv, output_dir, pdf_path, list(self.settings.rendercv_extra_flags))
+            cmd = build_rendercv_command(
+                cv, output_dir, pdf_path, list(self.settings.rendercv_extra_flags)
+            )
         except RenderError:
             raise
 
@@ -157,7 +159,9 @@ class RenderingService:
             raise RenderError(msg.strip() or "RenderCV falló.")
 
         if not pdf_path.is_file():
-            raise RenderError("RenderCV terminó sin error pero no generó el PDF en la ruta esperada.")
+            raise RenderError(
+                "RenderCV terminó sin error pero no generó el PDF en la ruta esperada."
+            )
 
         cleanup_intermediates(output_dir, before, pdf_path)
 

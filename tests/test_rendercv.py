@@ -7,7 +7,6 @@ ModuleNotFoundError until 2.7 is implemented.
 
 from __future__ import annotations
 
-import subprocess
 from pathlib import Path
 
 import pytest
@@ -138,7 +137,9 @@ def photo_scenario_project(project_factory):
     return root
 
 
-def test_render_lifecycle_timeout_nonzero_missing_exe_open_pdf(settings_factory, dummy_cv, monkeypatch):
+def test_render_lifecycle_timeout_nonzero_missing_exe_open_pdf(
+    settings_factory, dummy_cv, monkeypatch
+):
     """Task 2.6: render lifecycle cases (timeout, nonzero exit, missing exe, open_pdf).
 
     - timeout → TimeoutExpired raised by subprocess → RenderError naming seconds
@@ -156,7 +157,9 @@ def test_render_lifecycle_timeout_nonzero_missing_exe_open_pdf(settings_factory,
     import subprocess as _subprocess
 
     def raise_timeout(*args, **kwargs):
-        raise _subprocess.TimeoutExpired(cmd=args[0] if args else [], timeout=kwargs.get("timeout", 5))
+        raise _subprocess.TimeoutExpired(
+            cmd=args[0] if args else [], timeout=kwargs.get("timeout", 5)
+        )
 
     monkeypatch.setattr(_subprocess, "run", raise_timeout)
     with pytest.raises(rendercv.RenderError) as excinfo:
@@ -178,11 +181,17 @@ def test_render_lifecycle_timeout_nonzero_missing_exe_open_pdf(settings_factory,
     assert "bad yaml" in str(excinfo.value)
 
     # Missing executable case
-    monkeypatch.setattr(rendercv, "resolve_rendercv_executable", lambda: Path("/no/existe/rendercv"))
+    monkeypatch.setattr(
+        rendercv, "resolve_rendercv_executable", lambda: Path("/no/existe/rendercv")
+    )
     # But also make run succeed? No - resolve happens first. Also we need to make
     # resolve actually raise. Better: patch resolve to raise.
     monkeypatch.setattr(
-        rendercv, "resolve_rendercv_executable", lambda: (_ for _ in ()).throw(rendercv.RenderError("No se encontró el ejecutable de RenderCV (rendercv)"))
+        rendercv,
+        "resolve_rendercv_executable",
+        lambda: (_ for _ in ()).throw(
+            rendercv.RenderError("No se encontró el ejecutable de RenderCV (rendercv)")
+        ),
     )
     with pytest.raises(rendercv.RenderError) as excinfo:
         service.render(dummy_cv)
@@ -195,7 +204,15 @@ def test_render_lifecycle_timeout_nonzero_missing_exe_open_pdf(settings_factory,
     # Darwin case - should attempt open
     monkeypatch.setattr(_platform, "system", lambda: "Darwin")
     calls = []
-    monkeypatch.setattr(_subprocess, "run", lambda *a, **k: calls.append((a, k)) or CP.__class__(returncode=0, stdout="", stderr="") if False else None)  # dummy
+    monkeypatch.setattr(
+        _subprocess,
+        "run",
+        lambda *a, **k: (
+            calls.append((a, k)) or CP.__class__(returncode=0, stdout="", stderr="")
+            if False
+            else None
+        ),
+    )  # dummy
     # But easier: just call open_pdf
     try:
         rendercv.RenderingService(settings).open_pdf(Path("/tmp/test.pdf"))
