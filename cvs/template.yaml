@@ -1,0 +1,54 @@
+# Example CV for RenderCV — copy this file into cvs/ and replace the sample data.
+# See https://docs.rendercv.com for the full schema and entry types.
+cv:
+  name: "John Doe"
+  headline: "Software Engineer | Data Enthusiast"
+  location: "San Francisco, CA"
+  email: "john.doe@example.com"
+  phone: "(+1) 555 000 0000"
+  # photo: "photo.jpeg"   # optional; place the image next to this file in cvs/
+
+  sections:
+    # Each section title is arbitrary; RenderCV infers the entry type.
+    Summary:
+      - "Short professional summary. Replace this text with your own profile."
+
+    Experience:
+      - company: "Acme Corp"
+        position: "Software Engineer"
+        location: "Remote"
+        start_date: "2022-01"
+        end_date: "present"
+        highlights:
+          - "Describe an achievement or responsibility."
+          - "Quantify impact whenever possible."
+
+    Education:
+      - institution: "University of Example"
+        area: "B.Sc. in Computer Science"
+        location: "City, Country"
+        start_date: "2018-03"
+        end_date: "2022-12"
+        highlights:
+          - "Relevant coursework, honors, or thesis."
+
+    Skills:
+      - label: "Languages"
+        details: "Python, TypeScript, SQL"
+      - label: "Tools"
+        details: "Git, Docker, Linux"
+
+    Languages:
+      - label: "English"
+        details: "Native"
+      - label: "Spanish"
+        details: "Intermediate"
+
+  social_networks:
+    - network: "GitHub"
+      username: "johndoe"
+    - network: "LinkedIn"
+      username: "john-doe"
+
+locale:
+  language: english

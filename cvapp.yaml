@@ -1,0 +1,3 @@
+# Project configuration for cvapp.
+# Personal CVs live in cvs/ (gitignored). See cvs/template.yaml for the format.
+cvs_dir: cvs

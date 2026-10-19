@@ -5,3 +5,8 @@ __pycache__/
 cvapp.log
 .DS_Store
 .coverage
+
+# Personal CVs and photos stay local only.
+# Everything in cvs/ is ignored except the tracked example template.
+cvs/*
+!cvs/template.yaml
